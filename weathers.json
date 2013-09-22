@@ -1,0 +1,706 @@
+{
+  "NIGHTTEMP":
+  {
+    "saturation": "0.0", 
+    "darkness": "0.2", 
+    "sky": "0xFF6a6d55", 
+    "sunTint": "0xffffff", 
+    "haze": "0xFF999d7c", 
+    "fog": "1.0", 
+    "wind": "0.2", 
+    "horizon": "0xFF6a6d55", 
+    "ambient": "0xFFFF0000", 
+    "timeOfDay": "0.0", 
+    "contrast": "-0.2", 
+    "darknessColor": "0x88111114"
+  },
+
+  "DAWNTEMP":
+  {
+    "saturation": "0.0", 
+    "darkness": "0.2", 
+    "sky": "0xFF6a6d55", 
+    "sunTint": "0xffffff", 
+    "haze": "0xFF999d7c", 
+    "fog": "1.0", 
+    "wind": "0.2", 
+    "horizon": "0xFF6a6d55", 
+    "ambient": "0xFFFF0000", 
+    "timeOfDay": "0.25", 
+    "contrast": "-0.2", 
+    "darknessColor": "0x88111114"
+  },
+
+  "DAYTEMP":
+  {
+    "saturation": "0.0", 
+    "darkness": "0.2", 
+    "sky": "0xFF6a6d55", 
+    "sunTint": "0xffffff", 
+    "haze": "0xFF999d7c", 
+    "fog": "1.0", 
+    "wind": "0.2", 
+    "horizon": "0xFF6a6d55", 
+    "ambient": "0xFFFF0000", 
+    "timeOfDay": "0.5", 
+    "contrast": "-0.2", 
+    "darknessColor": "0x88111114"
+  },
+
+  "DUSKTEMP":
+  {
+    "saturation": "0.0", 
+    "darkness": "0.2", 
+    "sky": "0xFF6a6d55", 
+    "sunTint": "0xffffff", 
+    "haze": "0xFF999d7c", 
+    "fog": "1.0", 
+    "wind": "0.2", 
+    "horizon": "0xFF6a6d55", 
+    "ambient": "0xFFFF0000", 
+    "timeOfDay": "0.75", 
+    "contrast": "-0.2", 
+    "darknessColor": "0x88111114"
+  },
+
+  "FOGGY": 
+  {
+    "saturation": "0.7", 
+    "darkness": "0.2", 
+    "sky": "0xFF6a6d55", 
+    "sunTint": "0xffffff", 
+    "haze": "0xFF999d7c", 
+    "fog": "1.0", 
+    "wind": "0.2", 
+    "horizon": "0xFF6a6d55", 
+    "ambient": "0x330000FF", 
+    "timeOfDay": "0.25", 
+    "contrast": "-0.2", 
+    "darknessColor": "0x88111114"
+  }
+  , 
+  "DAWN":
+  {
+    "saturation": "0.8", 
+    "darkness": "0.2", 
+    "sky": "0xFF8C8CA6", 
+    "sunTint": "0xff6d40", 
+    "haze": "0x66f3f1e8", 
+    "fog": "0.0", 
+    "wind": "0.1", 
+    "horizon": "0xFFCF7968", 
+    "ambient": "0x11FF0000", 
+    "timeOfDay": "0.28", 
+    "contrast": "0.5", 
+    "darknessColor": "0x88111114"
+  }
+  ,
+  "SUNNY": 
+  {
+    "saturation": "0.8", 
+    "darkness": "0.0", 
+    "sky": "0xFF98BEEC", 
+    "sunTint": "0xfff766", 
+    "haze": "0xCCf3f1e8", 
+    "fog": "0.0", 
+    "wind": "1.0", 
+    "horizon": "0xFFC4DAF1", 
+    "ambient": "0x44FFBB7F", 
+    "timeOfDay": "0.6", 
+    "contrast": "0.8", 
+    "darknessColor": "0x88111114"
+  }
+  , 
+  "EVENING":
+  {
+    "saturation": "0.8", 
+    "darkness": "0.1", 
+    "sky": "0xFFFF7F51", 
+    "horizon": "0xFFFFDF54",
+    "sunTint": "0xFFFF7038", 
+    "haze": "0x99FF9068", 
+    "fog": "0.0", 
+    "wind": "0.1", 
+    "ambient": "0x33DE5E37", 
+    "timeOfDay": "0.70", 
+    "contrast": "0.7", 
+    "darknessColor": "0x88111114"
+  }
+  , 
+  
+  "NIGHT": 
+  {
+    "saturation": "0.8", 
+    "darkness": "0.4", 
+    "sky": "0xFF005EA5", 
+    "sunTint": "0xDDDDFF", 
+    "haze": "0xFF333333", 
+    "fog": "0.2", 
+    "wind": "0.2", 
+    "horizon": "0xFF002E80", 
+    "ambient": "0x110000FF", 
+    "timeOfDay": "0", 
+    "contrast": "0.5", 
+    "darknessColor": "0x88111114"
+  }
+  ,
+  "DAWNLIGHTPINK":
+  {
+    "saturation": "0.8", 
+    "darkness": "0.1", 
+    "sky": "0xFF8C8CA6", 
+    "sunTint": "0xF9B340", 
+    "haze": "0xAAf3f1e8", 
+    "fog": "0.5", 
+    "wind": "0.1", 
+    "horizon": "0xFFCF7968", 
+    "ambient": "0x22FF84DA", 
+    "timeOfDay": "0.28", 
+    "contrast": "0.5", 
+    "darknessColor": "0x88111114"
+  }
+  ,
+  
+  "DAYWINDYCLEAR":
+  {
+    "saturation": "1.0", 
+    "darkness": "0.0", 
+    "sky": "0xFF64A3EA", 
+    "sunTint": "0xF7E9AA", 
+    "haze": "0x22f3f1e8", 
+    "fog": "0.0", 
+    "wind": "0.5", 
+    "horizon": "0xFF86BAEF", 
+    "ambient": "0x33F99100", 
+    "timeOfDay": "0.45", 
+    "contrast": "1.0", 
+    "darknessColor": "0x88111114"
+  }
+  ,
+  "DUSKYELLOW":
+  {
+    "saturation": "0.9", 
+    "darkness": "0.0", 
+    "sky": "0xFF8BB8E8", 
+    "sunTint": "0xF4EED0", 
+    "haze": "0x88f3f1e8", 
+    "fog": "0.0", 
+    "wind": "0.1", 
+    "horizon": "0xFFEDC99A", 
+    "ambient": "0x44F79A42", 
+    "timeOfDay": "0.65", 
+    "contrast": "0.8", 
+    "darknessColor": "0x88111114"
+  }
+  , 
+  "EVENINGORANGE":
+  {
+    "saturation": "0.8", 
+    "darkness": "0.1", 
+    "sky": "0xFF8BB8E8", 
+    "horizon": "0xFFEDC99A",
+    "sunTint": "0xFFFF7038", 
+    "haze": "0xFFFF9068", 
+    "fog": "0.0", 
+    "wind": "0.1", 
+    "ambient": "0x33DE5E37", 
+    "timeOfDay": "0.70", 
+    "contrast": "0.7", 
+    "darknessColor": "0x88111114"
+  }
+  ,
+  "NIGHTGREEN": 
+  {
+    "saturation": "0.7", 
+    "darkness": "0.45", 
+    "sky": "0xFF005EA5", 
+    "sunTint": "0xDDDDFF", 
+    "haze": "0xFFB8F2BB", 
+    "fog": "0.4", 
+    "wind": "0.1", 
+    "horizon": "0xFF002E80", 
+    "ambient": "0x2254FFAF", 
+    "timeOfDay": "0.85", 
+    "contrast": "0.0", 
+    "darknessColor": "0x88263529"
+  }
+  ,
+  "DAWNGREY":
+  {
+    "saturation": "0.5", 
+    "darkness": "0.2", 
+    "sky": "0xFFC4AD99", 
+    "sunTint": "0xF9B340", 
+    "haze": "0xAAf3f1e8", 
+    "fog": "0.5", 
+    "wind": "0.1", 
+    "horizon": "0xFFCECECE", 
+    "ambient": "0x22FF84DA", 
+    "timeOfDay": "0.31", 
+    "contrast": "0.5", 
+    "darknessColor": "0x88111114"
+  }
+  ,
+  "DAYBLEAK":
+  {
+    "saturation": "0.7", 
+    "darkness": "0.0", 
+    "sky": "0xFFA0C2E8", 
+    "horizon": "0xFFA6C9ED", 
+    "sunTint": "0xF7E9AA", 
+    "haze": "0xFFf3f1e8", 
+    "fog": "1.0", 
+    "wind": "0.5", 
+    "ambient": "0x33F7E0C3", 
+    "timeOfDay": "0.45", 
+    "contrast": "0.0", 
+    "darknessColor": "0x88111114"
+  }
+  ,
+  "DUSKWARM":
+  {
+    "saturation": "0.9", 
+    "darkness": "0.0", 
+    "sky": "0xFF8BB8E8", 
+    "sunTint": "0xF4EED0", 
+    "haze": "0x88f3f1e8", 
+    "fog": "0.0", 
+    "wind": "0.1", 
+    "horizon": "0xFFEDC99A", 
+    "ambient": "0x44F79A42", 
+    "timeOfDay": "0.65", 
+    "contrast": "0.8", 
+    "darknessColor": "0x88111114"
+  }
+  ,"EVENINGBLACK":
+  {
+    "saturation": "0.7", 
+    "darkness": "0.3", 
+    "sky": "0xFF333333", 
+    "horizon": "0xFFEDC99A",
+    "sunTint": "0xFFFF7038", 
+    "haze": "0xFFFF9090", 
+    "fog": "0.0", 
+    "wind": "0.1", 
+    "ambient": "0x339f6b5c", 
+    "timeOfDay": "0.70", 
+    "contrast": "0.0", 
+    "darknessColor": "0x88111114"
+  } 
+  ,
+  "NIGHTDARK": 
+  {
+    "saturation": "0.7", 
+    "darkness": "0.75", 
+    "sky": "0xFF002E33", 
+    "sunTint": "0x65a2cb", 
+    "haze": "0xFF555555", 
+    "fog": "0.0", 
+    "wind": "0.1", 
+    "horizon": "0xFF002E80", 
+    "ambient": "0x4454AACF", 
+    "timeOfDay": "0.85", 
+    "contrast": "0.4", 
+    "darknessColor": "0xFF263529"
+  }
+  ,
+  "DAWNBLEAK":
+  {
+    "saturation": "0.9", 
+    "darkness": "0.2", 
+    "sky": "0xFFC4AD99", 
+    "sunTint": "0xF9B340", 
+    "haze": "0xAAf3f1e8", 
+    "fog": "0.5", 
+    "wind": "0.1", 
+    "horizon": "0xFFCECECE", 
+    "ambient": "0x22FF84DA", 
+    "timeOfDay": "0.31", 
+    "contrast": "0.5", 
+    "darknessColor": "0x88111114"
+  }
+  ,  "DAYSOFT":
+  {
+    "saturation": "0.7", 
+    "darkness": "0.0", 
+    "sky": "0xFFA0C2E8", 
+    "horizon": "0xFFA6C9ED", 
+    "sunTint": "0xF7E9AA", 
+    "haze": "0x22f3f1e8", 
+    "fog": "0.0", 
+    "wind": "0.1", 
+    "ambient": "0x33F7E0C3", 
+    "timeOfDay": "0.45", 
+    "contrast": "0.0", 
+    "darknessColor": "0x88111114"
+  }
+  ,"EVENINGMONOTONE":
+  {
+    "saturation": "0.7", 
+    "darkness": "0.3", 
+    "sky": "0xFF333333", 
+    "horizon": "0xFFEDEDED",
+    "sunTint": "0xAAAAAA", 
+    "haze": "0xFFFF9090", 
+    "fog": "0.0", 
+    "wind": "0.1", 
+    "ambient": "0x33666666", 
+    "timeOfDay": "0.70", 
+    "contrast": "0.0", 
+    "darknessColor": "0x88111114"
+  } 
+  ,
+  "NIGHTSUPERDARK": 
+  {
+    "saturation": "0.7", 
+    "darkness": "0.7", 
+    "sky": "0xFF000000", 
+    "sunTint": "0x65a2cb", 
+    "haze": "0xFFFFFFFF", 
+    "fog": "0.0", 
+    "wind": "0.1", 
+    "horizon": "0xFF002E80", 
+    "ambient": "0x4454AACF", 
+    "timeOfDay": "0.85", 
+    "contrast": "0.4", 
+    "darknessColor": "0xFF263529"
+  }
+  ,
+  "EVENINGFOGGY": 
+  {
+    "saturation": "0.7", 
+    "darkness": "0.3", 
+    "sky": "0xFFd56c47", 
+    "sunTint": "0xffd9c8", 
+    "haze": "0xFFd5d9ff", 
+    "fog": "1.0", 
+    "wind": "0.2", 
+    "horizon": "0xFF6a6d55", 
+    "ambient": "0x440000FF", 
+    "timeOfDay": "0.7", 
+    "contrast": "-0.1", 
+    "darknessColor": "0x88111114"
+  }
+  ,
+  "NIGHTFOGGY": 
+  {
+    "saturation": "0.7", 
+    "darkness": "0.7", 
+    "sky": "0xFF25229d", 
+    "sunTint": "0xffd9c8", 
+    "haze": "0xFFd5d9ff", 
+    "fog": "1.0", 
+    "wind": "0.2", 
+    "horizon": "0xFF6a6d55", 
+    "ambient": "0x7763709d", 
+    "timeOfDay": "0.8", 
+    "contrast": "-0.1", 
+    "darknessColor": "0x88111114"
+  }
+  ,
+  "DAYMONOCHROME":
+  {
+    "saturation": "0.15", 
+    "darkness": "0.0", 
+    "sky": "0xFF80A2C8", 
+    "horizon": "0xFFA6C9ED", 
+    "sunTint": "0xF7E9AA", 
+    "haze": "0xFFf3f1e8", 
+    "fog": "1.0", 
+    "wind": "0.5", 
+    "ambient": "0x33F7E0C3", 
+    "timeOfDay": "0.45", 
+    "contrast": "0.4", 
+    "darknessColor": "0x88111114"
+  }
+  ,
+  "DUSKPINK":
+  {
+    "saturation": "0.9", 
+    "darkness": "0.0", 
+    "sky": "0xFF8C8CA6", 
+    "sunTint": "0xF9B340", 
+    "haze": "0xAAf3c1e8", 
+    "fog": "0.0", 
+    "wind": "0.1", 
+    "horizon": "0xFFEDC99A", 
+    "ambient": "0x44F79A42", 
+    "timeOfDay": "0.65", 
+    "contrast": "0.8", 
+    "darknessColor": "0x88111114"
+  }
+  ,
+  "NIGHTCLEAR": 
+  {
+    "saturation": "0.8", 
+    "darkness": "0.4", 
+    "sky": "0xFF005EA5", 
+    "sunTint": "0xDDDDFF", 
+    "haze": "0x44434e87", 
+    "fog": "0.1", 
+    "wind": "0.3", 
+    "horizon": "0xFF002E80", 
+    "ambient": "0x110000FF", 
+    "timeOfDay": "0.1", 
+    "contrast": "-0.1", 
+    "darknessColor": "0x88111114"
+  },
+  "DAYCLEARCOLD":
+  {
+    "saturation": "0.7", 
+    "darkness": "0.0", 
+    "sky": "0xFFC9E3EA", 
+    "horizon": "0xFFC9E3EA", 
+    "sunTint": "0xF7E9AA", 
+    "haze": "0x33C9E3EA", 
+    "fog": "0.0", 
+    "wind": "0.5", 
+    "ambient": "0x33F7E0C3", 
+    "timeOfDay": "0.45", 
+    "contrast": "0.2", 
+    "darknessColor": "0x88111114"
+  }
+  ,
+  "DAWNCLEARORANGE":
+  {
+    "saturation": "0.8", 
+    "darkness": "0.2", 
+    "sky": "0xFF97A7B4", 
+    "sunTint": "0xFAFDC9", 
+    "haze": "0x88FDB24C", 
+    "horizon": "0xFFF9A04F", 
+    "fog": "0.0", 
+    "wind": "0.1", 
+    "ambient": "0x11FF0000", 
+    "timeOfDay": "0.28", 
+    "contrast": "0.5", 
+    "darknessColor": "0x88111114"
+  }
+  ,
+  "DUSKCLEAR":
+  {
+    "saturation": "0.9", 
+    "darkness": "0.2", 
+    "sky": "0xFF513744", 
+    "sunTint": "0xF9B340", 
+    "haze": "0xAAC9976D", 
+    "fog": "0.0", 
+    "wind": "0.1", 
+    "horizon": "0xFFC69875", 
+    "ambient": "0x22360A00", 
+    "timeOfDay": "0.65", 
+    "contrast": "0.45", 
+    "darknessColor": "0x88111114"
+  }
+  ,
+  "NIGHTREDMOON":
+  {
+    "saturation": "0.9", 
+    "darkness": "0.4", 
+    "sky": "0xFF142744", 
+    "sunTint": "0xC73800", 
+    "haze": "0x665C5D9E", 
+    "fog": "0.1", 
+    "wind": "0.1", 
+    "horizon": "0xFFAD2E21", 
+    "ambient": "0x220E0B62", 
+    "timeOfDay": "0.1", 
+    "contrast": "0.2", 
+    "darknessColor": "0x880E0B62"
+  }
+  ,
+  "DAWNREDMOON":
+  {
+    "saturation": "0.9", 
+    "darkness": "0.2", 
+    "sky": "0xFF16549F", 
+    "sunTint": "0xE76833", 
+    "haze": "0xbb5C5D9E", 
+    "fog": "0.1", 
+    "wind": "0.1", 
+    "horizon": "0xFFFF9286", 
+    "ambient": "0x110E0B22", 
+    "timeOfDay": "0.2", 
+    "contrast": "0.0", 
+    "darknessColor": "0x880E0B62"
+  }
+  ,
+  "DAYORANGESKY":
+  {
+    "saturation": "0.7", 
+    "darkness": "0.1", 
+    "sky": "0xFFADA290", 
+    "sunTint": "0xF9F8E6", 
+    "haze": "0x445A432C", 
+    "fog": "0.3", 
+    "wind": "0.7", 
+    "horizon": "0xFFDCAB4F", 
+    "ambient": "0x110E0B22", 
+    "timeOfDay": "0.4", 
+    "contrast": "0.2", 
+    "darknessColor": "0x880E0B62"
+  }
+  ,
+  "DUSKFOGGY":
+  {
+    "saturation": "0.6", 
+    "contrast": "0.1", 
+    "ambient": "0x330E0B22", 
+    "sky": "0xFFB29C8F", 
+    "horizon": "0xFF3D6BCD", 
+    "haze": "0x00000000", 
+    "sunTint": "0xF9F8E6", 
+    "fog": "0.8", 
+    "wind": "0.4", 
+    "timeOfDay": "0.75", 
+    "darkness": "0.25", 
+    "darknessColor": "0x880E0B62"
+  }
+  ,
+  "NIGHTPURPLE":
+  {
+    "saturation": "0.8", 
+    "contrast": "3.0", 
+    "ambient": "0xaa886AAA", 
+    "sky": "0xFF57577D", 
+    "horizon": "0xFF4D4658", 
+    "haze": "0x88886AAA", 
+    "sunTint": "0xF9F8E6", 
+    "fog": "0.0", 
+    "wind": "0.2", 
+    "timeOfDay": "0.9", 
+    "darkness": "0.35", 
+    "darknessColor": "0x88990BBB"
+  }
+  ,
+  "DAWNBRIGHT":
+  {
+    "saturation": "0.8", 
+    "contrast": "1.4", 
+    "ambient": "0xff886A00", 
+    "sky": "0xFF57577D", 
+    "horizon": "0xFFEEEE88", 
+    "haze": "0x00886AAA", 
+    "sunTint": "0xF9F8E6", 
+    "fog": "0.0", 
+    "wind": "0.2", 
+    "timeOfDay": "0.3", 
+    "darkness": "0.15", 
+    "darknessColor": "0x88000BBB"
+  }
+  ,
+  "DAYPASTEL":
+  {
+    "saturation": "1.0", 
+    "contrast": "1.0", 
+    "ambient": "0x77886A00", 
+    "sky": "0xFF3090F6", 
+    "horizon": "0xFFEEEE88", 
+    "haze": "0xDD657A8F", 
+    "sunTint": "0xF9F8E6", 
+    "fog": "0.0", 
+    "wind": "0.3", 
+    "timeOfDay": "0.55", 
+    "darkness": "0.0", 
+    "darknessColor": "0x88000BBB"
+  }
+  ,
+  "DUSKTAN":
+  {
+    "saturation": "0.8", 
+    "contrast": "0.5", 
+    "ambient": "0xFF886A00", 
+    "sky": "0xFF52424C", 
+    "horizon": "0xFFFFBA3B", 
+    "haze": "0x55C18F90", 
+    "sunTint": "0xF9F8E6", 
+    "fog": "0.0", 
+    "wind": "0.3", 
+    "timeOfDay": "0.7", 
+    "darkness": "0.1", 
+    "darknessColor": "0x88330B33"
+  }
+  ,
+  "NIGHTSHINE":
+  {
+    "saturation": "0.5", 
+    "contrast": "6.0", 
+    "ambient": "0x00000000", 
+    "sky": "0xFF000000", 
+    "horizon": "0xFFAAAAFF", 
+    "haze": "0x00886AAA", 
+    "sunTint": "0xF9F8E6", 
+    "fog": "0.0", 
+    "wind": "0.2", 
+    "timeOfDay": "0.9", 
+    "darkness": "0.4", 
+    "darknessColor": "0x88222255"
+  }
+  ,
+  "DAWNBROWN":
+  {
+    "saturation": "0.8", 
+    "contrast": "0.7", 
+    "ambient": "0x55AD3200", 
+    "sky": "0xFFC0AFBD", 
+    "horizon": "0xFF94A9B6", 
+    "haze": "0x99AAAAAA", 
+    "sunTint": "0xF9F8E6", 
+    "fog": "0.2", 
+    "wind": "0.2", 
+    "timeOfDay": "0.28", 
+    "darkness": "0.0", 
+    "darknessColor": "0x88222255"
+  }
+  ,
+  "DAYDUSTY":
+  {
+    "saturation": "0.8", 
+    "contrast": "0.2", 
+    "ambient": "0x55f5db04", 
+    "sky": "0xFF5d9df5", 
+    "horizon": "0xFF94A9B6", 
+    "haze": "0x99AAAAAA", 
+    "sunTint": "0xF9F8E6", 
+    "fog": "0.2", 
+    "wind": "0.2", 
+    "timeOfDay": "0.4", 
+    "darkness": "0.0", 
+    "darknessColor": "0x88222255"
+  }
+   ,
+  "DUSKRED":
+  {
+    "saturation": "0.8", 
+    "contrast": "0.1", 
+    "ambient": "0x55f5db04", 
+    "sky": "0xFFd06219", 
+    "horizon": "0xFFf2d407", 
+    "haze": "0x99AAAAAA", 
+    "sunTint": "0xf27612", 
+    "fog": "0.2", 
+    "wind": "0.2", 
+    "timeOfDay": "0.65", 
+    "darkness": "0.2", 
+    "darknessColor": "0x88000000"
+  }
+  ,
+  "NIGHTLONG":
+  {
+    "saturation": "1.0", 
+    "contrast": "0.3", 
+    "ambient": "0x55acc857", 
+    "sky": "0xFF7399c8", 
+    "horizon": "0xFF7399c8", 
+    "haze": "0xFF000000", 
+    "sunTint": "0x162039", 
+    "fog": "0.0", 
+    "wind": "0.1", 
+    "timeOfDay": "0.9", 
+    "darkness": "0.4", 
+    "darknessColor": "0x88000000"
+  }
+
+
+  
+}

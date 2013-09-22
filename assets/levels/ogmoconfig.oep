@@ -1,0 +1,40 @@
+<project>
+    <name>Kingdom</name>
+    <settings>
+        <defaultWidth>3840</defaultWidth>
+        <defaultHeight>192</defaultHeight>
+        <workingDirectory>../gfx</workingDirectory>
+    </settings>
+    <values>
+        <string name="backdropFarImg" default="SkylineImg"/>
+        <string name="backdropCloseImg" default="SkylineImg"/>
+        <integer name="waterHeight" default="230" min="0" max="384"/>
+    </values>
+    <tilesets>
+        <tileset name="tiles" image="tiles.png" tileWidth="32" tileHeight="32" />
+    </tilesets>
+    <objects>
+        <object name="Player" image="king.png" width="64" height="64" imageWidth="64" limit="1"/>
+        <object name="Citizen" image="citizen.png" width="32" height="32" imageWidth="32"/>
+        <object name="Troll" image="troll.png" width="32" height="32" imageWidth="32"/>
+        <object name="Bunny" image="bunny.png" width="16" height="16" imageWidth="16"/>
+        <object name="Treeline" image="treeline.png" width="96" height="160" />
+        <object name="Castle" image="castle_2_platform.png" width="128" height="96"/>
+        <object name="Reed" image="reed.png" width="32" height="32" imageWidth="32"/>
+        <object name="Hill" image="hill.png" width="160" height="32"/>
+        <object name="Farmland" image="farmland.png" width="64" height="32" imageWidth="64" imageHeight="32"/>
+        <object name="Wall" image="wall.png" width="32" height="64" imageWidth="32" imageHeight="64"/>
+        <object name="Torch" image="torch.png" width="16" height="32" imageWidth="16" imageHeight="32"/>
+        <object name="Shop" image="shop.png" width="64" height="64" imageWidth="64"/>
+        <object name="Firefly" image="firefly.png" width="4" height="4" imageWidth="4"/>
+    </objects>
+    <layers>
+        <objects name="backdrop" gridSize="4"/>
+        <tiles name="ground"  gridSize="32" exportTileSize="true" exportTileIDs="true"/>
+        <objects name="objects" gridSize="4"/>
+        <objects name="farmlands" gridSize="4"/>
+        <objects name="walls" gridSize="4"/>
+        <objects name="props" gridSize="4"/>
+        <objects name="lights" gridSize="4"/>
+    </layers>
+</project>

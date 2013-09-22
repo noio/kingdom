@@ -1,0 +1,77 @@
+
+
+x +assets Player
+x +assets Grass eating animation
+x +assets Farmer
+x +assets Shovel/Build animation
+x +assets Rabbit w/ arrow
+x +assets Troll w/ crown
+x +assets Treeline
+x +assets Wall
+x +assets Hill
+x +assets Stakes
+x +assets Palisade
+x +assets Stone wall
+x +assets Strong stone wall
+x +assets Scaffolding
+x +assets Campfire
+x +assets Lanterns/Torches
+x +assets Fireflies
+x +assets Fog
+x +assets Castle 
+x +assets Banner (1)
+x +assets Platform w/ stakes (2)
+x +assets Watchtower (2 + 1)
+x +assets Stone tower 2 + 2
+x +assets Castle (6)
+x +assets Farmland
+x +assets Shops
+x +assets Sun/Moon
+x +assets Fix shop graphic to be more clear
+  
+x +code Remove coin indicator when no money
+x +code Update cash sack at start
+x +code Replace castle walls 
+x +code Wall decay
+x +code Wall guards
+x +code Menu
+x +code Coin destinations
+x +code Money Indicator
+x +code Rig ripple size to weather
+x +code Fix wonky weather
+
+x +code Make hunters on castle shoot faster
+x +code +assets sparkle effect in stead of flicker when get coin
+x +code big trolls shouldn't steal coins
+x +assets Tighten map
++error checkWork: Cannot property on null reference
+x +visuals phase 20 too dark
+x +assets kindom border indicator
+x +balance phase 28 nothing happens
+x +balance phase 32 way too easy
+x +visuals phase 35 weather glitch
+x +balance phase 36 make longer/harder
+x +visuals phase 37 lower contrast
+x +visuals phase 40 glitch
+x +balance reduce troll cooldown
+x +visuals increase sparkle lifetime
+
+x +visuals weather glitch in phase 36
+x +visuals weather glitch in phase 40
+x +sound day music in phase 22 lasts too long
+x +sound day music in phase 27 clips too
+x +sound day music in phase 31 clips.
+x +sound day music clips in phase 35
+x +sound make sound for civ. getting hit by troll
+x +balance increase jumpheight from night 2. It's about halfway up the lowest wall now
+x +balance more trolls in phase 24
+x +balance trolls in phase 28 still don't scale walls
++balance wave in phase 36 is still pretty easy
+x +code check archer behavior, all seem to be guarding the right side.
++code check if walls are repaired
+x +code big trolls hitbox
+
++code cycle phase consists of final night, DAYPASTEL
+
+x +code fix jumping height
++code indicate low money
