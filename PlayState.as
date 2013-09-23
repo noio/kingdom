@@ -114,6 +114,7 @@ package
         public var minBeggars:int = 0;
         public var retreatDelay:Number = 0;
         public var gameover:Boolean = false;
+        public var dayNumber:int = 0;
         
         public var trollHealth:Number = 1;
         public var trollMaxSpeed:Number = 20;
@@ -659,47 +660,47 @@ package
             [WeatherPresets.EVENINGORANGE, 20, null, null, MusicNight3],
             // TWO (10-14)
             [WeatherPresets.NIGHTGREEN, 60, 30, phaseNightTwo, null], // GREEN
-            [WeatherPresets.DAWNGREY, 20, null, trollRetreat, null],
+            [WeatherPresets.DAWNGREY, 20, null, daybreak, null],
             [WeatherPresets.DAYBLEAK, 50, null, null, MusicDay2],
             [WeatherPresets.DUSKWARM, 20, null, null, null],
             [WeatherPresets.EVENINGBLACK, 20, null, null, MusicNight4],
             // THREE (15-18)
             [WeatherPresets.NIGHTDARK, 60, 30, phaseNightThree, null],
-            [WeatherPresets.DAWNBLEAK, 20, null, trollRetreat, null],
+            [WeatherPresets.DAWNBLEAK, 20, null, daybreak, null],
             [WeatherPresets.DAYSOFT, 40, null, null, null],
             [WeatherPresets.EVENINGMONOTONE, 20, null, null, MusicNight5],
             // FOUR (19-22)
             [WeatherPresets.NIGHTSUPERDARK, 60, 30, phaseNightFour, null],
-            [WeatherPresets.DAWNLIGHTPINK, 20, null, trollRetreat, MusicDay3],
+            [WeatherPresets.DAWNLIGHTPINK, 20, null, daybreak, MusicDay3],
             [WeatherPresets.DAYBLEAK, 40, null, null, null],
             [WeatherPresets.EVENINGFOGGY, 40, null, null, MusicNight4],
             // FIVE (23-26)
             [WeatherPresets.NIGHTFOGGY, 60, 30, phaseNightFive, null],
-            [WeatherPresets.DAWNBLEAK, 25, null, trollRetreat, MusicDay4],
+            [WeatherPresets.DAWNBLEAK, 25, null, daybreak, MusicDay4],
             [WeatherPresets.DAYMONOCHROME, 45, null, null, null],            
             [WeatherPresets.DUSKPINK, 20, null, null, null],
             // SIX (27-30)
             // 4 TROLLS WITH EPIC JUMPING
             [WeatherPresets.NIGHTCLEAR, 70, 30, phaseNightSix, MusicNight4],
-            [WeatherPresets.DAWNCLEARORANGE, 20, null, trollRetreat, null], 
+            [WeatherPresets.DAWNCLEARORANGE, 20, null, daybreak, null], 
             [WeatherPresets.DAYCLEARCOLD, 40, null, null, MusicDay3],
             [WeatherPresets.DUSKCLEAR, 20, null, null, null],
             // SEVEN (31-34)
             // RED MOON
             [WeatherPresets.NIGHTREDMOON, 60, 30, phaseNightSeven, MusicNight3],
-            [WeatherPresets.DAWNREDMOON, 20, null, trollRetreat, MusicDay5],
+            [WeatherPresets.DAWNREDMOON, 20, null, daybreak, MusicDay5],
             [WeatherPresets.DAYORANGESKY, 60, null, null, null],
             [WeatherPresets.DUSKFOGGY, 20, null, null, null],
             // EIGHT (35-38)
             // BIG WAVE
             [WeatherPresets.NIGHTPURPLE, 80, 30, phaseNightEight, MusicNight4],  
-            [WeatherPresets.DAWNBRIGHT, 20, null, trollRetreat, null],
+            [WeatherPresets.DAWNBRIGHT, 20, null, daybreak, null],
             [WeatherPresets.DAYPASTEL, 40, null, null, MusicDay2],            
             [WeatherPresets.DUSKTAN, 20, null, null, MusicNight4],
             // NINE (39-42)
             // SINGLE TROLL, MASSIVE HEALTH
             [WeatherPresets.NIGHTSHINE, 60, 30, phaseNightNine, null],
-            [WeatherPresets.DAWNBROWN, 20, null, trollRetreat, null],
+            [WeatherPresets.DAWNBROWN, 20, null, daybreak, null],
             [WeatherPresets.DAYDUSTY, 40, null, null, null],             //TODO
             [WeatherPresets.DUSKRED, 20, null, null, MusicNight3],            //TODO
             // TEN (43)
@@ -708,7 +709,7 @@ package
         ];
         
         public const PHASES_CYCLE:Array = [
-            [WeatherPresets.DAWNGREY, 20, null, trollRetreat, null],
+            [WeatherPresets.DAWNGREY, 20, null, daybreak, null],
             [WeatherPresets.DAYBLEAK, 40, null, null, null],
             [WeatherPresets.EVENINGORANGE, 20, null, null, null],
             [WeatherPresets.NIGHTGREEN, 30, null, null, MusicNight5],
@@ -800,6 +801,12 @@ package
                 trollSpawnTimer = MIN_TROLL_SPAWNTIME;
             }
         }
+
+        public function daybreak():void{
+            trollRetreat();
+            dayNumber ++;
+            showText(Utils.toRoman(dayNumber));
+        }
         
         public function trollRetreat(delay:Number=10):void{
             if (delay < retreatDelay){
@@ -881,9 +888,6 @@ package
 		public function showCoins():void{
             var c:int = (player as Player).coins;
 			sack.show(c);
-            if (c < 3){
-                sack.flicker();
-            }
 		}
         
         public function showText(t:String=null):void{

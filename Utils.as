@@ -13,6 +13,10 @@ package
     public class Utils{
         
         public static const DEG_TO_RAD:Number = Math.PI/180;
+
+        public static var ROMAN_VALUES:Array = [1000, 900,  500, 400, 100,  90, 50,  40, 10,  9,   5,  4,   1]
+        public static var ROMAN_LETTERS:Array = ['M',  'CM', 'D', 'CD','C', 'XC','L','XL','X','IX','V','IV','I']
+
         
         /**
          * Shrinks the hitbox (x,y and offset) of given FlxSprite to the pixels that are actually
@@ -369,6 +373,19 @@ package
                 }
             }
             return gibs;
+        }
+
+        /** 
+        * Returns a roman numeral string
+        */
+        public static function toRoman(n:int):String{
+            var s:String = ''
+            for (var i:int = 0; i < ROMAN_LETTERS.length; i ++){
+                var c:int = Math.floor(n / ROMAN_VALUES[i])
+                s += ROMAN_LETTERS[i] * c;
+                n -= c * ROMAN_VALUES[i];
+            }
+            return s;
         }
     }
 }

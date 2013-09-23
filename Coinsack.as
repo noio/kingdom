@@ -15,12 +15,13 @@ package
 			
             loadGraphic(Img,true,false,16,16);
             scrollFactor.x = scrollFactor.y = 0;
+            addAnimation('blink',[8,0,8,0,8,0,8,0,8,0],5,false);
 
         }
 		
 		public function show(c:int):void{
             if (c == 0) {
-                frame = 0;
+                play('blink', true);
             } else if (c == 1) {
                 frame = 1;
             } else if (c >= 2 && c <= 3){
