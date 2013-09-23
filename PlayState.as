@@ -648,13 +648,13 @@ package
         public const PHASES:Array = [
             // INTRO (0-3)
             [WeatherPresets.FOGGY, 10, null, phaseFirst, null],
-            [WeatherPresets.DAWN, 25, null, null, null],
+            [WeatherPresets.DAWN, 25, null, daybreak, null],
             [WeatherPresets.SUNNY, 30, null, null, null],
             [WeatherPresets.EVENING, 20, null, null, null],
             // ONE (4-9)
             [WeatherPresets.NIGHT, 20, null, phaseBeforeNightOne, MusicNight2],
             [null, 50, null, phaseNightOne, null],
-            [WeatherPresets.DAWNLIGHTPINK, 20, null, null, null],
+            [WeatherPresets.DAWNLIGHTPINK, 20, null, daybreak, null],
             [WeatherPresets.DAYWINDYCLEAR, 30, null, null, MusicDay1],
             [WeatherPresets.DUSKYELLOW, 20, null, null, null],
             [WeatherPresets.EVENINGORANGE, 20, null, null, MusicNight3],
@@ -809,9 +809,9 @@ package
         }
         
         public function trollRetreat(delay:Number=10):void{
-            if (delay < retreatDelay){
-                retreatDelay = delay;
-            }
+            
+            retreatDelay = delay;
+            
             if (retreatDelay <= 0){
                 trolls.callAll("retreat");
             }

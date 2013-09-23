@@ -382,8 +382,11 @@ package
             var s:String = ''
             for (var i:int = 0; i < ROMAN_LETTERS.length; i ++){
                 var c:int = Math.floor(n / ROMAN_VALUES[i])
-                s += ROMAN_LETTERS[i] * c;
                 n -= c * ROMAN_VALUES[i];
+                while (c > 0){
+                    s += ROMAN_LETTERS[i];
+                    c --;
+                }
             }
             return s;
         }
