@@ -36,6 +36,7 @@ package
         public static const SHOVEL:int      = 3;
 		public static const GIVE:int        = 4;
 		public static const JUST_HACKED:int = 5;
+        public static const COWER:int       = 6;
         
         
         // Behavior times
@@ -46,6 +47,7 @@ package
         public static const SHOVEL_TIME:Number = 1.0;
         public static const SHOVEL_GOAL_DIST:Number = 600;
 		public static const GIVE_COOLDOWN:Number = 10.0;
+        public static const COWER_COOLDOWN:Number = 5.0;
         
         // Variables
         public var occupation:int   = BEGGAR;
@@ -84,6 +86,7 @@ package
                     loadGraphic(BeggarImg,true,true,32,32);
                     addAnimation('walk',[0,1,2,3,4,5],5,true);
                     addAnimation('idle',[7,8,7,8,7,6],2,true);
+                    addAnimation('cower',[9,10],2,false);
                     maxVelocity.x = 15;
                     break;
                 case POOR:
@@ -179,6 +182,10 @@ package
                 } else if (coins == 1){
                     morph(POOR);
                 }
+            }
+            if (occupation == BEGGAR && action == IDLE){
+                action = COWER;
+                play('cower', true);
             }
         }
         
@@ -380,6 +387,11 @@ package
                     checkWork(playstate.walls);
                     checkWork(playstate.farmlands);
                 } else if (action == SHOVEL && t > SHOVEL_TIME){
+                    t = 0;
+                    action = IDLE;
+                }
+            } else if (occupation == BEGGAR){
+                if (action == COWER && t > COWER_COOLDOWN){
                     t = 0;
                     action = IDLE;
                 }

@@ -397,6 +397,7 @@ package
             FlxG.overlap(coins, beggars, this.pickUpCoin);
             FlxG.overlap(coins, trolls, this.pickUpCoin);
             FlxG.overlap(trolls, characters, this.trollHit);
+            FlxG.overlap(trolls, beggars, this.trollHit);
             FlxG.overlap(trolls, player, this.trollHit);
 			FlxG.overlap(characters, player, this.giveTaxes);
             // Update weather
