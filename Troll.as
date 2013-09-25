@@ -52,6 +52,7 @@ package
 			jumpiness = playstate.trollJumpiness; 
             confusion = playstate.trollConfusion;
             big = playstate.trollBig;
+            t = 1;
 
             if (big){
                 scale.x = scale.y = 2;
@@ -126,12 +127,13 @@ package
                 }
                 t = 0
             } 
-            
-            if (retreating && (x < 32 || x > FlxG.worldBounds.width - 32)){
-                kill();
-            }
+                
             // I don't know why I need this, but apparently trolls can fall of the world.
+            if (x <= 24 || x + width >= FlxG.worldBounds.width - 24){
+                if (retreating) kill();
+            }
             if (y > 200){
+                FlxG.log("TROLL FELL OFF :(")
                 kill();
             }
             
@@ -141,7 +143,7 @@ package
                 maxVelocity.x = maxSpeed;
                 // Sprint outside of kingdom.
                 if (x > playstate.kingdomRight + safeDistance || x < playstate.kingdomLeft - safeDistance){
-                    maxVelocity.x += 30;
+                    maxVelocity.x += 40;
                 }
                 drag.x = maxVelocity.x*10;
                 if(facing == LEFT){

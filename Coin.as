@@ -31,7 +31,7 @@ package
         }
                 
         public function drop(from:FlxSprite, owner:FlxObject=null):Coin{
-            reset(from.x + from.width/2 - 5, from.y - 10);
+            reset(from.x + from.width/2 - 5, Math.max(40, from.y - 10));
             lifespan = TOTAL_LIFESPAN;
             velocity.x = FlxG.random()*60 - 30;
             velocity.y = -200;

@@ -69,7 +69,10 @@ package
             super(X,Y);
             goal = FlxG.worldBounds.width/2;
             drag.x = 500;
+            guardLeftBorder = (FlxG.random() > 0.5);
             myColor = Utils.HSVtoRGB(FlxG.random()*360, 0.1+FlxG.random()*0.2, 0.6);
+
+
             playstate = FlxG.state as PlayState;
             castle = playstate.castle;
 			addAnimationCallback(this.animationFrame);
@@ -101,7 +104,11 @@ package
                     addAnimation('idle',[0,6,0,6,0,7],2,true);
                     break;
                 case HUNTER:
-                    guardLeftBorder = (FlxG.random() > 0.5);
+                    if (guardLeftBorder){
+                        myColor = Utils.HSVtoRGB(220 + FlxG.random() * 20, 0.2+FlxG.random()*0.3, 0.7);
+                    } else {
+                        myColor = Utils.HSVtoRGB(0 + FlxG.random() * 20, 0.2+FlxG.random()*0.3, 0.7);
+                    }
                     loadGraphic(HunterImg,true,true,32,32,true);
                     Utils.replaceColor(pixels, BASE_COLOR, myColor);
                     Utils.replaceColor(pixels, BASE_SHADE, Utils.interpolateColor(myColor,0xFF000000,0.2));

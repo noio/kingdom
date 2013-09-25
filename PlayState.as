@@ -149,11 +149,11 @@ package
         
         // Cheatvars
         private var cheatNoTrolls:Boolean = false;
+        private var untouchable:Boolean = false;
         
         //=== INITIALIZATION ==//
         override public function create():void
         {
-            trace("CREATED")
             FlxG.camera.bgColor = 0xFFafb4c2;
             FlxG.camera.bounds = new FlxRect(0,0,GAME_WIDTH,196)
             FlxG.worldBounds.width = GAME_WIDTH;
@@ -326,9 +326,15 @@ package
             }
             
             // Add ground collision proxy because this is a flat level.
-            var floorCollider:FlxSprite = new FlxSprite(0,132.2).makeGraphic(FlxG.worldBounds.width,32,0x00FF00FF)
-            floorCollider.immovable = true;
-            level.add(floorCollider);
+            var collider:FlxSprite = new FlxSprite(0,132.2).makeGraphic(FlxG.worldBounds.width,32,0x00FF00FF)
+            collider.immovable = true;
+            level.add(collider);
+            collider = new FlxSprite(0,0).makeGraphic(16,160,0x00FF00FF);
+            collider.immovable = true;
+            level.add(collider);
+            collider = new FlxSprite(FlxG.worldBounds.width - 16,0).makeGraphic(16,160,0x00FF00FF);
+            collider.immovable = true;
+            level.add(collider);
                         
             // Add Walls
             if (oel.walls != undefined){
@@ -398,7 +404,9 @@ package
             FlxG.overlap(coins, trolls, this.pickUpCoin);
             FlxG.overlap(trolls, characters, this.trollHit);
             FlxG.overlap(trolls, beggars, this.trollHit);
-            FlxG.overlap(trolls, player, this.trollHit);
+            if (!(CHEATS && untouchable)){
+                FlxG.overlap(trolls, player, this.trollHit);
+            }
 			FlxG.overlap(characters, player, this.giveTaxes);
             // Update weather
             weather.update();
@@ -520,6 +528,11 @@ package
                     cheatNoTrolls = !cheatNoTrolls;
                     showText("Trolls " + (cheatNoTrolls ? "disabled" : "enabled"))
                 }
+
+                if (FlxG.keys.justPressed("U")) {
+                    untouchable = !untouchable; 
+                    showText("Untouchable " + (untouchable ? "disabled" : "enabled"))   
+                }
             
                 if (FlxG.keys.justPressed("N")) {
                     timeToNextPhase = 1.0;
@@ -569,7 +582,25 @@ package
                     setProgress('D2 X7 B2 P0 F1 H2 W000011 C0 G4');
                 }
                 if (FlxG.keys.justPressed("THREE")){
-                    setProgress('D3 X12 B2 P1 F1 H3 W010012 C0 G3');
+                    setProgress('D3 X12 B2 P0 F2 H3 W010010 C0 G4');
+                }
+                if (FlxG.keys.justPressed("FOUR")){
+                    setProgress('D4 X17 B3 P0 F2 H4 W000022 C0 G0');   
+                }
+                if (FlxG.keys.justPressed("FIVE")){
+                    setProgress('D5 X21 B3 P0 F10 H21 W010022 C1 G0');   
+                }
+                if (FlxG.keys.justPressed("SIX")){
+                    // setProgress('D3 X12 B2 P1 F1 H3 W010012 C0 G3');   
+                }
+                if (FlxG.keys.justPressed("SEVEN")){
+                    // setProgress('D3 X12 B2 P1 F1 H3 W010012 C0 G3');   
+                }
+                if (FlxG.keys.justPressed("EIGHT")){
+                    // setProgress('D3 X12 B2 P1 F1 H3 W010012 C0 G3');   
+                }
+                if (FlxG.keys.justPressed("NINE")){
+                    // setProgress('D3 X12 B2 P1 F1 H3 W010012 C0 G3');   
                 }
             }
         }
@@ -609,14 +640,13 @@ package
         
         // These WILL scale the lowest walls
         public function phaseNightThree():void{
-            trollHealth = 1;
             trollJumpHeight = 30;
-            spawnTrolls(16);
+            spawnTrolls(20);
         }
         
         public function phaseNightFour():void{
             trollHealth = 2;
-            spawnTrolls(20);
+            spawnTrolls(24);
         }
         
         public function phaseNightFive():void{
@@ -626,7 +656,7 @@ package
         }
         
         public function phaseNightSix():void{
-            trollJumpHeight = 320;
+            trollJumpHeight = 38;
             trollMaxSpeed   = 45;
             trollHealth     = 3
             spawnTrolls(8);
@@ -807,11 +837,11 @@ package
                 var o:Number = FlxG.random()*12;
             
                 var troll:Troll = (trolls.recycle(Troll) as Troll);
-                troll.reset(24-o, groundHeight - 40)
+                troll.reset(16 + o, groundHeight - 40)
                 trollsToSpawn.push(troll);
                 
                 troll = (trolls.recycle(Troll) as Troll);
-                troll.reset(GAME_WIDTH-24+o, groundHeight - 40);
+                troll.reset(GAME_WIDTH - 16 - o - troll.width, groundHeight - 40);
                 trollsToSpawn.push(troll);
 
                 updateTrollSpawn();    
@@ -829,6 +859,9 @@ package
 
         public function daybreak():void{
             trollRetreat();
+            for( var i:int = 0; i <= castle.stage; i ++){
+                (coins.recycle(Coin) as Coin).drop(castle, player);
+            }
             day ++;
             showText(Utils.toRoman(day));
             if (CHEATS){
