@@ -117,7 +117,7 @@ package
         public var minBeggars:int = 0;
         public var retreatDelay:Number = 0;
         public var gameover:Boolean = false;
-        public var dayNumber:int = 0;
+        public var day:int = 0;
         
         public var trollHealth:Number = 1;
         public var trollMaxSpeed:Number = 20;
@@ -562,13 +562,13 @@ package
                 }
 
                 if (FlxG.keys.justPressed("ONE")){
-                    setProgress('D1 X1 B2 P0 F0 H0 W000011 C0 G7');
+                    setProgress('D1 X2 B2 P0 F0 H0 W000011 C0 G7');
                 }
                 if (FlxG.keys.justPressed("TWO")){
-                    setProgress('D2 X6 B2 P0 F1 H2 W000011 C0 G4');
+                    setProgress('D2 X7 B2 P0 F1 H2 W000011 C0 G4');
                 }
                 if (FlxG.keys.justPressed("THREE")){
-                    setProgress('D3 X11 B2 P1 F1 H3 W010012 C0 G3');
+                    setProgress('D3 X12 B2 P1 F1 H3 W010012 C0 G3');
                 }
             }
         }
@@ -764,6 +764,7 @@ package
             if (currentPhase[0] != null){
                 weather.tweenTo(currentPhase[0], weatherTweenTime);
             }
+            phase += 1;
             // Call the function to do custom actions if there is one
             if (currentPhase[3] != null){
                 currentPhase[3]();
@@ -776,8 +777,6 @@ package
                 this.music = FlxG.play(currentPhase[4]);
                 FlxG.log("Playing " + currentPhase[4]);
             }
-            
-            phase += 1;
         }
 
         public function updateEnvironmentSounds():void{
@@ -829,8 +828,8 @@ package
 
         public function daybreak():void{
             trollRetreat();
-            dayNumber ++;
-            showText(Utils.toRoman(dayNumber));
+            day ++;
+            showText(Utils.toRoman(day));
             if (CHEATS){
                 showProgress();
             }
@@ -851,7 +850,7 @@ package
             }
 
             var s:String = '';
-            s += 'D' + dayNumber + ' ';
+            s += 'D' + day + ' ';
             s += 'X' + phase + ' ';
             s += 'B' + numBeggars + ' ';
             s += 'P' + numCitizens[Citizen.POOR] + ' ';
@@ -867,8 +866,10 @@ package
         public function setProgress(s:String):void{
             // Parse the string
             // 'N1 X1 B2 P0 F0 H0 W000011 C0 G7'
+            progressAll();
             FlxG.log("Skip to " + s);
 
+            var newDay:int = parseInt(s.match(/D(\d+)/)[1]);
             var ph:int = parseInt(s.match(/X(\d+)/)[1]);
             var numBeggars:int = parseInt(s.match(/B(\d+)/)[1]);
             var numPoor:int = parseInt(s.match(/P(\d+)/)[1]);
@@ -877,10 +878,6 @@ package
             var wallStages:Array = s.match(/W(\d)(\d)(\d)(\d)(\d)(\d)/);
             var castleStage:int = parseInt(s.match(/C(\d)/)[1]);
             var gold:int = parseInt(s.match(/G(\d)/)[1]);
-
-            while (phase < ph){
-                nextPhase();
-            }
 
             while (beggars.countLiving() < numBeggars){
                 beggars.add(new Citizen((kingdomRight + kingdomLeft) / 2,0));
@@ -911,12 +908,20 @@ package
             }
 
             for (var i:int = 0; i < walls.length; i ++){
-                (walls.members[i] as Wall).buildTo(parseInt(wallStages[i+1]));
+                (walls.members[i] as Wall).buildTo(parseInt(wallStages[i+1]), true);
             }
 
             castle.morph(castleStage);
             
             (player as Player).changeCoins(gold - (player as Player).coins);
+
+            if (phase >= ph){
+                phase = ph - 1;
+                day = newDay - 1;
+            }
+            while(phase < ph){
+                nextPhase();
+            }
 
         }
         

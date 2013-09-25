@@ -4,6 +4,6 @@ package
     {
         function needsWork():Boolean;
         
-        function work(citizen:Citizen):void;
+        function work(citizen:Citizen=null):void;
     }
 }

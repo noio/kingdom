@@ -50,19 +50,28 @@ package
             buildTo(stage + 1);
         }
 
-        public function buildTo(s:int):void{
+        public function buildTo(s:int, instant:Boolean=false):void{
+            if (s < stage) return;
             building = true;
             stage = s;
             heightToBuild = HEIGHT[stage];
             health = HEALTH[stage];
             updateAppearance();
+            if (scaffold != null){
+                scaffold.kill();
+            }
             scaffold = (playstate.indicators.recycle(Scaffold) as Scaffold).build(this);
             scaffold.y = y - HEIGHT[stage];
             solid = false;
+            // Kind of hacky this.
+            if (instant){
+                heightToBuild = 1;
+                work(null);
+            }
             flicker();
         }
         
-        public function work(citizen:Citizen):void{
+        public function work(citizen:Citizen=null):void{
             if (heightToBuild > 0) {
                 heightToBuild -= WORK_BUILD_HEIGHT;
                 if (heightToBuild <= 0){
@@ -71,6 +80,7 @@ package
                     solid = true;
                     Utils.explode(scaffold, playstate.gibs, 1);
                     scaffold.kill();
+                    scaffold = null;
                 }
                 updateAppearance();
             } else {

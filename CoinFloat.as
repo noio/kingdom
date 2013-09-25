@@ -22,7 +22,7 @@ package
         public function float(above:FlxSprite):void{
             acceleration.y = 0;
             x = above.x + above.width/2 - width/2;
-            y = above.y - height - 4;
+            y = Math.max(above.y - height - 4, 40);
         }
         
     }

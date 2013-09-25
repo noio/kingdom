@@ -23,6 +23,7 @@ package
         public static const MAX_FOOD_BONUS:Number = 50;
         public static const MAX_FOOD:Number = 100;
         public static const HIT_RATE:Number = 0.2;
+        public static const SELECT_DISTANCE:Number = 6;
         
         private var playstate:PlayState;
 
@@ -196,7 +197,7 @@ package
             
             //Find selected shop/wall
             if (selectedBuilding != null){
-                if (x > selectedBuilding.x + selectedBuilding.width || x + width < selectedBuilding.x){
+                if (Math.abs((selectedBuilding.x + selectedBuilding.width/2) - (x + width/2)) > SELECT_DISTANCE * 2){
                     deselect(selectedBuilding);
                 }
             } else if (playstate.recruitedCitizen) {
@@ -209,7 +210,7 @@ package
         private function checkSelectable(group:FlxGroup):void{
             for (var i:int = 0; i < group.length; i ++){
                 var b:FlxSprite = group.members[i];
-                if (b != null && Math.abs((b.x + b.width/2) - (x + width/2)) < 6){
+                if (b != null && Math.abs((b.x + b.width/2) - (x + width/2)) <= SELECT_DISTANCE){
                     if ((b as Buildable).canBuild())
                         select(b);
                 }
