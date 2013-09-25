@@ -70,8 +70,17 @@ x +balance trolls in phase 28 still don't scale walls
 x +code check archer behavior, all seem to be guarding the right side.
 +code check if walls are repaired
 x +code big trolls hitbox
++balance night 2 (green) too jumpy
++code castle coin indicator too high
 
 +code cycle phase consists of final night, DAYPASTEL
 
 x +code fix jumping height
 +code indicate low money
++code add some dust when building
+x +code text is broken
++code skip to night with progress
+x +code output progress
++asset duck/cower animation for beggars
++code buy indicator appears further to middle than it disappears, also, it disappears when buying
++code max rate for farmland

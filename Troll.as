@@ -157,8 +157,6 @@ package
                     play('walk')
                 // Jump
                 if(FlxG.random() < jumpiness){
-                    FlxG.log(y);
-                    FlxG.log(jumpHeight);
                     maxHeightReached = 0;
                     var v:Number = Math.sqrt(jumpHeight * 2 * acceleration.y)
                     velocity.y = -v;
@@ -167,7 +165,6 @@ package
                 }
             } else {
                 maxHeightReached = Math.max(112 - y, maxHeightReached)
-                FlxG.log(maxHeightReached);
                 drag.x = maxVelocity.x*0.1;
                 maxVelocity.x = maxSpeed * 2;
                 if(facing == LEFT)

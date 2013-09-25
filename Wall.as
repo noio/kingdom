@@ -16,6 +16,8 @@ package
         public const HEIGHT:Array = [11,38,46,54,59]; // The walls are 12px underground.
         public const HEALTH:Array = [2,38,46,54,59];
         public const HURT_COOLDOWN:Number = 1;
+        public const WORK_BUILD_HEIGHT:int = 10;
+        public const WORK_HEAL_AMOUNT:int = 4;
         
         private var playstate:PlayState;
         public var scaffold:Scaffold = null;
@@ -45,8 +47,12 @@ package
         }
         
         public function build():void{
+            buildTo(stage + 1);
+        }
+
+        public function buildTo(s:int):void{
             building = true;
-            stage = stage + 1;
+            stage = s;
             heightToBuild = HEIGHT[stage];
             health = HEALTH[stage];
             updateAppearance();
@@ -58,17 +64,18 @@ package
         
         public function work(citizen:Citizen):void{
             if (heightToBuild > 0) {
-                heightToBuild -= 15;
+                heightToBuild -= WORK_BUILD_HEIGHT;
                 if (heightToBuild <= 0){
                     heightToBuild = 0;
                     building = false;
                     solid = true;
+                    Utils.explode(scaffold, playstate.gibs, 1);
                     scaffold.kill();
                 }
                 updateAppearance();
             } else {
                 if (health < HEALTH[stage]){
-                    health += 1;
+                    health += Math.min(WORK_HEAL_AMOUNT, HEALTH[stage] - health);
                 }
             }
         }

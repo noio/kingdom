@@ -273,7 +273,7 @@ package
                 }
                 if (needWork.length > 0){
                     var idx:int = FlxG.random() * needWork.length;
-                    goal = needWork[idx].x + 12;
+                    goal = needWork[idx].x + needWork[idx].width / 2;
                     return;    
                 }
                 
@@ -314,6 +314,11 @@ package
 				action = IDLE;
 				play('idle');
 			}
+
+            if (animName == 'shovel'){
+                var d:Dust = playstate.fx.recycle(Dust) as Dust;
+                d.reset(x + ((facing == RIGHT) ? 14 : -6), y + 19);
+            }
 		}
 
         
@@ -322,7 +327,7 @@ package
             t += FlxG.elapsed;
             shovelCooldown -= FlxG.elapsed;
 			giveCooldown -= FlxG.elapsed;
-            
+
             // IDLE MOVING AROUND
             
             if(guarding && occupation == HUNTER){

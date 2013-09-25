@@ -12,7 +12,9 @@ package
         // Forcing flash to do some imports (weird)
         Reed;Castle;Treeline;Farmland;Wall;Torch;Shop;Firefly;
         
-		[Embed(source="assets/aurora.ttf",fontName="Aurora",embedAsCFF="false")] protected var font:String;
+		// [Embed(source="assets/aurora.ttf",fontName="Aurora",embedAsCFF="false")] protected var font:String;
+        [Embed(source="assets/04b03.ttf",fontName="04b03",embedAsCFF="false")] protected var font:String;
+        
 		
         [Embed(source='/assets/levels/compiled/fields.oel', mimeType="application/octet-stream")] private const LevelCity:Class;
         // Graphics
@@ -88,7 +90,7 @@ package
         
         //CONSTANTS
         public static const CHEATS:Boolean = true;
-        public static const WEATHERCONTROLS:Boolean = true;
+        public static const WEATHERCONTROLS:Boolean = false;
         
         public static const GAME_WIDTH:int = 3840;
         public static const MIN_KINGDOM_WIDTH:int = 200;
@@ -100,6 +102,7 @@ package
 		
 		public static const TEXT_MAX_ALPHA:Number = 0.7;
 		public static const TEXT_READ_SPEED:Number = 0.20;
+        public static const TEXT_MIN_TIME:Number = 6;
 
         // Game vars
         public var kingdomLeft:Number = 1920-200;
@@ -274,11 +277,12 @@ package
             // Effects
             add(lights = new FlxGroup());
             darkness.scrollFactor.x = darkness.scrollFactor.y = 0;
-            darkness.blend = 'multiply';            
+            darkness.blend = 'multiply';
             add(darkness);
             
             add(text = new FlxText(10, 138, FlxG.width, "TEXT"));
-            text.setFormat("Aurora", 8, 0xFFFFFFFF, "left", 0xAA333333);
+            // FlxG.log(font)
+            text.setFormat("04b03", 8, 0xFFFFFFFF, "left", 0xAA333333);
 			text.visible = false;
 			text.scrollFactor.x = 0;
 			text.alpha = 0.7;
@@ -485,8 +489,32 @@ package
             }
             
             super.update();
+
+            if (FlxG.keys.justPressed("S"))
+            {
+                if (FlxG.stage.displayState == 'normal') {
+                    FlxG.stage.displayState = 'fullScreen';
+                } else {
+                    FlxG.stage.displayState = 'normal';
+                }
+            }
+
             
             if (CHEATS){
+                if (FlxG.keys.justPressed("F")) {
+                    var c:Citizen = new Citizen ((kingdomRight+kingdomLeft) / 2, 0);
+                    characters.add(c);
+                    c.morph(Citizen.FARMER);
+                    showText("Spawned farmer.")
+                }
+
+                if (FlxG.keys.justPressed("H")) {
+                    var h:Citizen = new Citizen ((kingdomRight+kingdomLeft) / 2, 0);
+                    characters.add(h);
+                    h.morph(Citizen.HUNTER);
+                    showText("Spawned farmer.")
+                }
+
                 if (FlxG.keys.justPressed("T")) {
                     cheatNoTrolls = !cheatNoTrolls;
                     showText("Trolls " + (cheatNoTrolls ? "disabled" : "enabled"))
@@ -513,10 +541,6 @@ package
                     showText("Full progress")
                 }
             
-                if (FlxG.keys.justPressed("F")){
-                    (player as Player).food = 10000;
-                    showText("Horse speed.")
-                }
                 
                 if (FlxG.keys.justPressed("R")){
                     spawnTrolls(2)
@@ -536,15 +560,16 @@ package
                     (player as Player).coins += 1;
                     showText((player as Player).coins + " coins.")
                 }
-                if (FlxG.keys.justPressed("S"))
-    			{
-    				if (FlxG.stage.displayState == 'normal')
-    				{
-    					FlxG.stage.displayState = 'fullScreen';
-    				}else{
-    					FlxG.stage.displayState = 'normal';
-    				}
-    			}
+
+                if (FlxG.keys.justPressed("ONE")){
+                    setProgress('D1 X1 B2 P0 F0 H0 W000011 C0 G7');
+                }
+                if (FlxG.keys.justPressed("TWO")){
+                    setProgress('D2 X6 B2 P0 F1 H2 W000011 C0 G4');
+                }
+                if (FlxG.keys.justPressed("THREE")){
+                    setProgress('D3 X11 B2 P1 F1 H3 W010012 C0 G3');
+                }
             }
         }
           
@@ -583,8 +608,8 @@ package
         
         // These WILL scale the lowest walls
         public function phaseNightThree():void{
-            trollHealth = 30;
-            trollJumpHeight = 40;
+            trollHealth = 1;
+            trollJumpHeight = 30;
             spawnTrolls(16);
         }
         
@@ -806,6 +831,93 @@ package
             trollRetreat();
             dayNumber ++;
             showText(Utils.toRoman(dayNumber));
+            if (CHEATS){
+                showProgress();
+            }
+        }
+
+        public function showProgress():void{
+            var numBeggars:int = beggars.countLiving();
+            var numCitizens:Array = [0,0,0,0]
+            for (var i:int = 0; i < characters.length; i ++){
+                if (characters.members[i] != null){
+                    numCitizens[(characters.members[i] as Citizen).occupation] ++;
+                }
+            }
+            numCitizens[Citizen.HUNTER] += Math.max(0,archers.countLiving());
+            var wallStages:Array = [];
+            for (i = 0; i < walls.length; i ++){
+                wallStages.push((walls.members[i] as Wall).stage);
+            }
+
+            var s:String = '';
+            s += 'D' + dayNumber + ' ';
+            s += 'X' + phase + ' ';
+            s += 'B' + numBeggars + ' ';
+            s += 'P' + numCitizens[Citizen.POOR] + ' ';
+            s += 'F' + numCitizens[Citizen.FARMER] + ' ';
+            s += 'H' + numCitizens[Citizen.HUNTER] + ' ';
+            s += 'W' + wallStages.join('') + ' ';
+            s += 'C' + castle.stage + ' ';
+            s += 'G' + (player as Player).coins
+            showText(s);
+            FlxG.log(s);
+        }
+
+        public function setProgress(s:String):void{
+            // Parse the string
+            // 'N1 X1 B2 P0 F0 H0 W000011 C0 G7'
+            FlxG.log("Skip to " + s);
+
+            var ph:int = parseInt(s.match(/X(\d+)/)[1]);
+            var numBeggars:int = parseInt(s.match(/B(\d+)/)[1]);
+            var numPoor:int = parseInt(s.match(/P(\d+)/)[1]);
+            var numFarmers:int = parseInt(s.match(/F(\d+)/)[1]);
+            var numHunters:int = parseInt(s.match(/H(\d+)/)[1]);
+            var wallStages:Array = s.match(/W(\d)(\d)(\d)(\d)(\d)(\d)/);
+            var castleStage:int = parseInt(s.match(/C(\d)/)[1]);
+            var gold:int = parseInt(s.match(/G(\d)/)[1]);
+
+            while (phase < ph){
+                nextPhase();
+            }
+
+            while (beggars.countLiving() < numBeggars){
+                beggars.add(new Citizen((kingdomRight + kingdomLeft) / 2,0));
+            }
+
+            characters.callAll('kill');
+            archers.callAll('kill');
+            var c:Citizen;
+            while (numPoor) {
+                c = new Citizen ((kingdomRight+kingdomLeft) / 2, 0);
+                c.morph(Citizen.POOR);
+                characters.add(c);
+                numPoor --;
+            }
+
+            while (numFarmers) {
+                c = new Citizen ((kingdomRight+kingdomLeft) / 2, 0);
+                c.morph(Citizen.FARMER);
+                characters.add(c);
+                numFarmers --;
+            }
+
+            while (numHunters) {
+                c = new Citizen ((kingdomRight+kingdomLeft) / 2, 0);
+                c.morph(Citizen.HUNTER);
+                characters.add(c);
+                numHunters --;   
+            }
+
+            for (var i:int = 0; i < walls.length; i ++){
+                (walls.members[i] as Wall).buildTo(parseInt(wallStages[i+1]));
+            }
+
+            castle.morph(castleStage);
+            
+            (player as Player).changeCoins(gold - (player as Player).coins);
+
         }
         
         public function trollRetreat(delay:Number=10):void{
@@ -897,7 +1009,7 @@ package
 			if (textQueue.length > 0 && textTimeout <= 0){
 	            text.text = textQueue.shift();
 	            text.visible = true;
-				textTimeout = TEXT_READ_SPEED * text.text.length;
+				textTimeout = Math.max(TEXT_MIN_TIME, TEXT_READ_SPEED * text.text.length);
 			}
         }
         
