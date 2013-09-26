@@ -11,6 +11,7 @@ package
     public class Troll extends FlxSprite{
         
         [Embed(source='/assets/gfx/troll.png')]     private var Img:Class;
+        [Embed(source='/assets/gfx/trollbig.png')]     private var ImgBig:Class;
         
         public var t:Number = 0;
         public var goal:Number = 1600;
@@ -30,14 +31,10 @@ package
         
         public function Troll(){
             super(0,0);
-            loadGraphic(Img,true,true,32,32);
             maxVelocity.y  = 275;
             maxVelocity.x = 60;
             acceleration.y = 900;
-            addAnimation('walk',[0,1,2,3,4,5,6,7,8],(10+FlxG.random()*5),true);
-            addAnimation('walk_coin',[9,10,11,12,13,14,15,16,17],(10+FlxG.random()*5),true);
-            addAnimation('walk_crown',[18,19,20,21,22,23,24,25,26],(10+FlxG.random()*5),true);
-            addAnimation('stand',[0],10,true);
+            loadAnims();
             playstate = (FlxG.state as PlayState);
         }
         
@@ -51,22 +48,33 @@ package
             jumpHeight = playstate.trollJumpHeight;
 			jumpiness = playstate.trollJumpiness; 
             confusion = playstate.trollConfusion;
-            big = playstate.trollBig;
             t = 1;
+            if (! big == playstate.trollBig){
+                big = playstate.trollBig;
+                loadAnims();
+            }
+        }
 
+        private function loadAnims():void{
             if (big){
-                scale.x = scale.y = 2;
-                offset.x = 10
-                offset.y = 8;
-                width = 12;
+                // scale.x = scale.y = 2;
+                loadGraphic(ImgBig,true,true,64,64);
+                offset.x = 20
+                offset.y = 26;
+                width = 16;
                 height = 40;
             } else {
-                scale.x = scale.y = 1;
+                // scale.x = scale.y = 1;
+                loadGraphic(Img,true,true,32,32);
                 offset.x = 12;
                 offset.y = 12;
                 width = 8;
                 height = 20;
             }
+            addAnimation('walk',[0,1,2,3,4,5,6,7,8],(10+FlxG.random()*5),true);
+            addAnimation('walk_crown',[9,10,11,12,13,14,15,16,17],(10+FlxG.random()*5),true);
+            addAnimation('walk_coin',[18,19,20,21,22,23,24,25,26],(10+FlxG.random()*5),true);
+            addAnimation('stand',[0],10,true);
         }
         
         public function getsCoin():void{
@@ -105,6 +113,7 @@ package
         public function retreat():void{
             retreating = true;
             goal = (x < FlxG.worldBounds.width/2) ? 0 : FlxG.worldBounds.width;
+            wait = false;
         }
 
         public function go():void{

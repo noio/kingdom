@@ -10,7 +10,7 @@ package
     public class Fog extends FlxGroup{
         [Embed(source='/assets/gfx/fog.png')]  private const FogImg:Class;
 
-        public static const MAXFOG:int = 8;
+        public static const MAXFOG:int = 5;
         
         private var weather:Weather;
         private var weatherChanged:Number = -1;

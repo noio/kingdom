@@ -98,7 +98,7 @@ package
         public static const MAX_BUNNIES:int = 50;
         public static const MIN_BUNNY_SPAWNTIME:Number = 6.0;
         
-        public static const MIN_TROLL_SPAWNTIME:Number = 0.5;
+        public static const MIN_TROLL_SPAWNTIME:Number = 1.5;
 		
 		public static const TEXT_MAX_ALPHA:Number = 0.7;
 		public static const TEXT_READ_SPEED:Number = 0.20;
@@ -135,6 +135,7 @@ package
         public var boughtItemAdvice:Boolean      = false;
         public var expandedKingdom:Boolean       = false;
         public var expandedKingdomAdvice:Boolean = false;
+        public var savedProgress:String          = null;
         
         // Internals
 		public var textTimeout:Number = 0;
@@ -576,25 +577,25 @@ package
                 }
 
                 if (FlxG.keys.justPressed("ONE")){
-                    setProgress('D1 X2 B2 P0 F0 H0 W000011 C0 G7');
+                    setProgress('D1 X2 B2 P0 F0 H0 W000011 C0 G7 S00');
                 }
                 if (FlxG.keys.justPressed("TWO")){
-                    setProgress('D2 X7 B2 P0 F1 H2 W000011 C0 G4');
+                    setProgress('D2 X7 B2 P0 F1 H2 W000011 C0 G4 S00');
                 }
                 if (FlxG.keys.justPressed("THREE")){
-                    setProgress('D3 X12 B2 P0 F2 H3 W010010 C0 G4');
+                    setProgress('D3 X12 B2 P0 F2 H3 W010010 C0 G4 S00');
                 }
                 if (FlxG.keys.justPressed("FOUR")){
-                    setProgress('D4 X17 B3 P0 F2 H4 W000022 C0 G0');   
+                    setProgress('D4 X17 B2 P1 F2 H5 W020011 C1 G1 S00');   
                 }
                 if (FlxG.keys.justPressed("FIVE")){
-                    setProgress('D5 X21 B3 P0 F10 H21 W010022 C1 G0');   
+                    setProgress('D5 X21 B3 P0 F2 H6 W020011 C1 G0 S00');   
                 }
                 if (FlxG.keys.justPressed("SIX")){
-                    // setProgress('D3 X12 B2 P1 F1 H3 W010012 C0 G3');   
+                    setProgress('D6 X25 B4 P0 F2 H5 W010001 C1 G7 S00');   
                 }
                 if (FlxG.keys.justPressed("SEVEN")){
-                    // setProgress('D3 X12 B2 P1 F1 H3 W010012 C0 G3');   
+                    setProgress('D7 X29 B2 P2 F3 H6 W030031 C1 S00 G0');   
                 }
                 if (FlxG.keys.justPressed("EIGHT")){
                     // setProgress('D3 X12 B2 P1 F1 H3 W010012 C0 G3');   
@@ -644,33 +645,38 @@ package
             spawnTrolls(20);
         }
         
+        // The trolls are a little tougher now.
         public function phaseNightFour():void{
             trollHealth = 2;
             spawnTrolls(24);
         }
         
+        // They are faster but more chaotic, they might
+        // break your walls, which will kill you in the next wave.
         public function phaseNightFive():void{
             trollMaxSpeed   = 30;
             trollConfusion  = 0.05;
             spawnTrolls(36);
         }
-        
+
+        // These trolls will scale the high wooden walls
         public function phaseNightSix():void{
             trollJumpHeight = 38;
             trollMaxSpeed   = 45;
-            trollHealth     = 3
+            trollHealth     = 3;
             spawnTrolls(8);
         }
 
+        // Boss wave trolls
         public function phaseNightSeven():void{
-            trollJumpHeight = 140;
-            trollMaxSpeed = 30;
-            trollHealth = 1
-            spawnTrolls(32);
-            trollHealth = 4
+            // trollMaxSpeed = 30;
+            // trollHealth = 1
+            // spawnTrolls(32);
+            trollHealth = 30;
             trollBig = true;
-            trollMaxSpeed = 32;
-            spawnTrolls(4);
+            trollMaxSpeed = 20;
+            trollJumpiness = 0;
+            spawnTrolls(2);
         }
 
         public function phaseNightEight():void{
@@ -864,20 +870,18 @@ package
             }
             day ++;
             showText(Utils.toRoman(day));
-            if (CHEATS){
-                showProgress();
-            }
+            saveProgress();
         }
 
-        public function showProgress():void{
+        public function saveProgress():void{
             var numBeggars:int = beggars.countLiving();
-            var numCitizens:Array = [0,0,0,0]
+            var numCitizens:Array = [0,0,0,0];
             for (var i:int = 0; i < characters.length; i ++){
-                if (characters.members[i] != null){
+                if (characters.members[i] != null && (characters.members[i].alive)){
                     numCitizens[(characters.members[i] as Citizen).occupation] ++;
                 }
             }
-            numCitizens[Citizen.HUNTER] += Math.max(0,archers.countLiving());
+            numCitizens[Citizen.HUNTER] += Math.max(0, archers.countLiving());
             var wallStages:Array = [];
             for (i = 0; i < walls.length; i ++){
                 wallStages.push((walls.members[i] as Wall).stage);
@@ -892,9 +896,10 @@ package
             s += 'H' + numCitizens[Citizen.HUNTER] + ' ';
             s += 'W' + wallStages.join('') + ' ';
             s += 'C' + castle.stage + ' ';
+            s += 'S' + (shops.members[0] as Shop).supply + (shops.members[1] as Shop).supply + ' ';
             s += 'G' + (player as Player).coins
-            showText(s);
             FlxG.log(s);
+            savedProgress = s;
         }
 
         public function setProgress(s:String):void{
@@ -911,6 +916,7 @@ package
             var numHunters:int = parseInt(s.match(/H(\d+)/)[1]);
             var wallStages:Array = s.match(/W(\d)(\d)(\d)(\d)(\d)(\d)/);
             var castleStage:int = parseInt(s.match(/C(\d)/)[1]);
+            var shopSupply:Array = s.match(/S(\d)(\d)/);
             var gold:int = parseInt(s.match(/G(\d)/)[1]);
 
             while (beggars.countLiving() < numBeggars){
@@ -944,6 +950,9 @@ package
             for (var i:int = 0; i < walls.length; i ++){
                 (walls.members[i] as Wall).buildTo(parseInt(wallStages[i+1]), true);
             }
+
+            (shops.members[0] as Shop).setSupply(parseInt(shopSupply[0]));
+            (shops.members[1] as Shop).setSupply(parseInt(shopSupply[1]));
 
             castle.morph(castleStage);
             

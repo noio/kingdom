@@ -13,8 +13,8 @@ package
         
         [Embed(source="/assets/sound/hitwall.mp3")] private var HitwallSound:Class;
         
-        public const HEIGHT:Array = [11,38,46,54,59]; // The walls are 12px underground.
-        public const HEALTH:Array = [2,38,46,54,59];
+        public const HEIGHT:Array = [11,38,46,54,59]; // Effective Height: [26, 34, 42, 47]
+        public const HEALTH:Array = [2,38,50,60,75];
         public const HURT_COOLDOWN:Number = 1;
         public const WORK_BUILD_HEIGHT:int = 10;
         public const WORK_HEAL_AMOUNT:int = 4;
@@ -116,7 +116,7 @@ package
             height = HEIGHT[stage] - heightToBuild;
             y = baseY + 64 - height;
             offset.y = 64 - HEIGHT[stage];
-            if (health < 10){
+            if (health < HEALTH[stage] / 2){
                 frame = stage + 5;
             } else {
                 frame = stage;

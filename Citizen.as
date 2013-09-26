@@ -82,6 +82,9 @@ package
         public function morph(occ:int):Citizen{
             action = IDLE;
             _animations = new Array();
+            if (occ != BEGGAR && coins <= 0){
+                coins ++;
+            }
             switch(occ){
                 case BEGGAR:
                     if (occupation != BEGGAR)

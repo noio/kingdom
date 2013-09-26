@@ -56,6 +56,11 @@ package
                 updateAppearance();
             }
         }
+
+        public function setSupply(s:int):void{
+            supply = s;
+            updateAppearance();
+        }
         
         public function updateAppearance():void{
             frame = supply;
