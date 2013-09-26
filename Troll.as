@@ -42,27 +42,31 @@ package
             retreating = false;
             hasCoin = false;
             wait = true;
-            super.reset(X, Y);
+            if (! big == playstate.trollBig){
+                big = playstate.trollBig;
+                loadAnims();
+            }
+            super.reset(X - width / 2, Y);
             health = playstate.trollHealth;
 			maxSpeed = playstate.trollMaxSpeed;
             jumpHeight = playstate.trollJumpHeight;
 			jumpiness = playstate.trollJumpiness; 
             confusion = playstate.trollConfusion;
             t = 1;
-            if (! big == playstate.trollBig){
-                big = playstate.trollBig;
-                loadAnims();
-            }
+            
         }
 
         private function loadAnims():void{
             if (big){
                 // scale.x = scale.y = 2;
                 loadGraphic(ImgBig,true,true,64,64);
-                offset.x = 20
-                offset.y = 26;
+                offset.x = 24;
+                offset.y = 24;
                 width = 16;
                 height = 40;
+                addAnimation('walk',[0,1,2,3,4,5,6,7,8], 7, true);
+                addAnimation('walk_crown',[9,10,11,12,13,14,15,16,17], 7, true);
+                addAnimation('stand',[0],10,true);
             } else {
                 // scale.x = scale.y = 1;
                 loadGraphic(Img,true,true,32,32);
@@ -70,11 +74,11 @@ package
                 offset.y = 12;
                 width = 8;
                 height = 20;
+                addAnimation('walk',[0,1,2,3,4,5,6,7,8],(10+FlxG.random()*5),true);
+                addAnimation('walk_crown',[9,10,11,12,13,14,15,16,17],(10+FlxG.random()*5),true);
+                addAnimation('walk_coin',[18,19,20,21,22,23,24,25,26],(10+FlxG.random()*5),true);
+                addAnimation('stand',[0],10,true);
             }
-            addAnimation('walk',[0,1,2,3,4,5,6,7,8],(10+FlxG.random()*5),true);
-            addAnimation('walk_crown',[9,10,11,12,13,14,15,16,17],(10+FlxG.random()*5),true);
-            addAnimation('walk_coin',[18,19,20,21,22,23,24,25,26],(10+FlxG.random()*5),true);
-            addAnimation('stand',[0],10,true);
         }
         
         public function getsCoin():void{
@@ -100,7 +104,7 @@ package
             if (hasCrown) return;
             health --;
             if (health > 0) {
-                flicker();
+                // flicker();
             } else {
                 Utils.explode(this, playstate.gibs, 1.0);
                 if (hasCoin) {

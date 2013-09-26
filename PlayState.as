@@ -98,7 +98,7 @@ package
         public static const MAX_BUNNIES:int = 50;
         public static const MIN_BUNNY_SPAWNTIME:Number = 6.0;
         
-        public static const MIN_TROLL_SPAWNTIME:Number = 1.5;
+        public static const MIN_TROLL_SPAWNTIME:Number = 1.0;
 		
 		public static const TEXT_MAX_ALPHA:Number = 0.7;
 		public static const TEXT_READ_SPEED:Number = 0.20;
@@ -532,7 +532,7 @@ package
 
                 if (FlxG.keys.justPressed("U")) {
                     untouchable = !untouchable; 
-                    showText("Untouchable " + (untouchable ? "disabled" : "enabled"))   
+                    showText("Untouchable " + (untouchable ? "enabled" : "disabled"))   
                 }
             
                 if (FlxG.keys.justPressed("N")) {
@@ -664,6 +664,7 @@ package
             trollJumpHeight = 38;
             trollMaxSpeed   = 45;
             trollHealth     = 3;
+            trollConfusion  = 0.02;
             spawnTrolls(8);
         }
 
@@ -676,6 +677,7 @@ package
             trollBig = true;
             trollMaxSpeed = 20;
             trollJumpiness = 0;
+            trollConfusion = 0.02;
             spawnTrolls(2);
         }
 
@@ -847,7 +849,7 @@ package
                 trollsToSpawn.push(troll);
                 
                 troll = (trolls.recycle(Troll) as Troll);
-                troll.reset(GAME_WIDTH - 16 - o - troll.width, groundHeight - 40);
+                troll.reset(GAME_WIDTH - 16 - o, groundHeight - 40);
                 trollsToSpawn.push(troll);
 
                 updateTrollSpawn();    
