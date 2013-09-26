@@ -26,6 +26,8 @@ package
         public var big:Boolean = false;
         public var safeDistance:Number = 200;
         private var maxHeightReached:Number = 0;
+        private var jumpCooldown:Number = 0;
+        private var confuseCooldown:Number = 0;
         
         private var playstate:PlayState;
         
@@ -51,9 +53,10 @@ package
 			maxSpeed = playstate.trollMaxSpeed;
             jumpHeight = playstate.trollJumpHeight;
 			jumpiness = playstate.trollJumpiness; 
+            jumpCooldown = jumpiness + Math.random() * 2 * jumpiness;
             confusion = playstate.trollConfusion;
+            confuseCooldown = confusion + Math.random() * 2 * confusion;
             t = 1;
-            
         }
 
         private function loadAnims():void{
@@ -129,12 +132,15 @@ package
                 velocity.x = 0;
                 return;
             }
+            confuseCooldown -= FlxG.elapsed;
+            jumpCooldown -= FlxG.elapsed;
             // Check for movement input
             acceleration.x = 0;
             t += FlxG.elapsed;
-            if (!hasCoin && t > 1.0){
-                if (retreating || FlxG.random() < confusion){
+            if (!hasCoin && t > 1.8){
+                if (retreating || confuseCooldown < 0){
                     goal = (x < FlxG.worldBounds.width/2) ? 0 : FlxG.worldBounds.width;
+                    confuseCooldown = confusion + Math.random() * 2 * confusion;
                 } else {
                     goal = playstate.player.x;
                 }
@@ -171,12 +177,13 @@ package
                 else
                     play('walk')
                 // Jump
-                if(FlxG.random() < jumpiness){
+                if(jumpCooldown < 0){
                     maxHeightReached = 0;
                     var v:Number = Math.sqrt(jumpHeight * 2 * acceleration.y)
                     velocity.y = -v;
                     maxVelocity.x = maxSpeed * 2;
                     velocity.x *= 2
+                    jumpCooldown = jumpiness + Math.random() * 2 * jumpiness;
                 }
             } else {
                 maxHeightReached = Math.max(112 - y, maxHeightReached)

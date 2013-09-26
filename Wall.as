@@ -94,11 +94,11 @@ package
             if (t > HURT_COOLDOWN){
                 health -= Damage;
                 FlxG.play(HitwallSound).proximity(x, y, playstate.player, FlxG.width)
-                Utils.explode(this, playstate.gibs, 0.2);
+                Utils.explode(this, playstate.gibs, 0.4);
                 t = 0;
             }
             if (health <= 0 && stage > 0){
-                Utils.explode(this, playstate.gibs, 0.5);
+                Utils.explode(this, playstate.gibs, 1.0);
                 stage = 0;
             }
             updateAppearance();

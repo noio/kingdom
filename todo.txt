@@ -86,6 +86,7 @@ x +code buy indicator appears further to middle than it disappears, also, it dis
 x +code max rate for farmland
 +balance day 5 should last a little longer
 +balance day 6 should last a little longer too
-+balance trolls should spread out a little more
-+code walls should look broken sooner, have a little more health
+x +balance trolls should spread out a little more
+x +code walls should look broken sooner, have a little more health
 +code resume from last daybreak with a nice fx
++code wall damage gibs spawn too low (something with baseline offset?)

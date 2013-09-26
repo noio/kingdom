@@ -121,7 +121,7 @@ package
         
         public var trollHealth:Number = 1;
         public var trollMaxSpeed:Number = 20;
-        public var trollJumpHeight:Number = 100;
+        public var trollJumpHeight:Number = 20;
         public var trollJumpiness:Number = 0.001;
         public var trollConfusion:Number = 0.001;
         public var trollBig:Boolean = false;
@@ -484,7 +484,7 @@ package
                 panTo(shops.members[1], 5.0);
             }
             
-            if (boughtItem && !expandedKingdom && !expandedKingdomAdvice && characters.length >= 3){
+            if (boughtItem && !expandedKingdom && !expandedKingdomAdvice && characters.length >= 4){
                 expandedKingdomAdvice = true;
                 showText("Expand your kingdom by building a wall here.");
                 panTo(walls.members[1], 5.0, -12);
@@ -609,10 +609,6 @@ package
         public function phaseFirst():void{
             beggars.add( new Citizen (kingdomRight+300, 0)); 
             beggars.add( new Citizen (kingdomRight+300, 0));
-            trollMaxSpeed = 24;
-            trollJumpiness = 0.0;
-            trollConfusion = 0.01;
-            trollHealth = 1;
             minBeggars = 2;
         }
         public function phaseBeforeNightOne():void{
@@ -620,11 +616,7 @@ package
         }
         
         public function phaseNightOne():void{
-            trollMaxSpeed = 24;
-            trollJumpHeight = 20;
-            trollJumpiness = 0.0;
-            trollConfusion = 0.01;
-            trollHealth = 1;
+            trollStats(24, 1, 20, 999999, false, 16.0);
             spawnTrolls(2);
             panTo(trolls.members[0]);
             showText("They will noodle your stuff away.")
@@ -632,39 +624,32 @@ package
         
         // These trolls still won't scale your lowest walls
         public function phaseNightTwo():void{
-            trollMaxSpeed   = 26;
-            trollJumpHeight = 20;
-            trollJumpiness  = 0.02;
-            trollConfusion  = 0.06;
+            trollStats(26, 1, 20, 4, false, 12.0);
             spawnTrolls(12);
         }
         
         // These WILL scale the lowest walls
         public function phaseNightThree():void{
-            trollJumpHeight = 30;
+            trollStats(26, 1, 30, 2, false, 12.0);
             spawnTrolls(20);
         }
         
         // The trolls are a little tougher now.
         public function phaseNightFour():void{
-            trollHealth = 2;
+            trollStats(26, 2, 30, 2, false, 10.0);
             spawnTrolls(24);
         }
         
         // They are faster but more chaotic, they might
         // break your walls, which will kill you in the next wave.
         public function phaseNightFive():void{
-            trollMaxSpeed   = 30;
-            trollConfusion  = 0.05;
+            trollStats(35, 2, 30, 4, false, 4.0);
             spawnTrolls(36);
         }
 
         // These trolls will scale the high wooden walls
         public function phaseNightSix():void{
-            trollJumpHeight = 38;
-            trollMaxSpeed   = 45;
-            trollHealth     = 3;
-            trollConfusion  = 0.02;
+            trollStats(30, 3, 38, 4, false, 10.0);
             spawnTrolls(8);
         }
 
@@ -673,14 +658,14 @@ package
             // trollMaxSpeed = 30;
             // trollHealth = 1
             // spawnTrolls(32);
-            trollHealth = 30;
-            trollBig = true;
-            trollMaxSpeed = 20;
-            trollJumpiness = 0;
-            trollConfusion = 0.02;
+            trollStats(20, 30, 10, 0, true, 16.0)
             spawnTrolls(2);
         }
 
+        // Since the boss probably broke your walls
+        // these trolls jump very high, there is no
+        // disadvantage to not having walls.
+        // You will need them back in the next wave though.
         public function phaseNightEight():void{
             trollHealth = 1;
             trollBig = false;
@@ -736,12 +721,12 @@ package
             // FOUR (19-22)
             [WeatherPresets.NIGHTSUPERDARK, 60, 30, phaseNightFour, null],
             [WeatherPresets.DAWNLIGHTPINK, 20, null, daybreak, MusicDay3],
-            [WeatherPresets.DAYBLEAK, 40, null, null, null],
+            [WeatherPresets.DAYBLEAK, 55, null, null, null],
             [WeatherPresets.EVENINGFOGGY, 40, null, null, MusicNight4],
             // FIVE (23-26)
             [WeatherPresets.NIGHTFOGGY, 60, 30, phaseNightFive, null],
             [WeatherPresets.DAWNBLEAK, 25, null, daybreak, MusicDay4],
-            [WeatherPresets.DAYMONOCHROME, 45, null, null, null],            
+            [WeatherPresets.DAYMONOCHROME, 60, null, null, null],            
             [WeatherPresets.DUSKPINK, 20, null, null, null],
             // SIX (27-30)
             // 4 TROLLS WITH EPIC JUMPING
@@ -834,6 +819,15 @@ package
             // } else {
             //     this.cicadas.pause();
             // }
+        }
+
+        public function trollStats(speed:Number, health:Number, jumpheight:Number, jumpiness:Number=2, big:Boolean=false, confusion:Number=3):void{
+            trollMaxSpeed = speed;
+            trollHealth = health;
+            trollJumpHeight = jumpheight;
+            trollJumpiness = jumpiness;
+            trollBig = big;
+            trollConfusion = confusion;
         }
                 
         public function spawnTrolls(amount:int):void{
@@ -960,13 +954,9 @@ package
             
             (player as Player).changeCoins(gold - (player as Player).coins);
 
-            if (phase >= ph){
-                phase = ph - 1;
-                day = newDay - 1;
-            }
-            while(phase < ph){
-                nextPhase();
-            }
+            phase = ph - 1;
+            day = newDay - 1;
+            nextPhase();
 
         }
         
