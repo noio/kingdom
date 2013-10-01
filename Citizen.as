@@ -298,7 +298,7 @@ package
             
             var l:int, r:int;
             
-            if (occupation == HUNTER && (playstate.weather.timeOfDay >= 0.7 || playstate.weather.timeOfDay < 0.20)) {
+            if (occupation == HUNTER && (playstate.weather.timeOfDay >= 0.65 || playstate.weather.timeOfDay < 0.20)) {
                 // Hunters gather around borders at night
                 if (guardLeftBorder){
                     l = playstate.kingdomLeft;

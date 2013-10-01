@@ -70,7 +70,7 @@ x +balance wave in phase 36 is still pretty easy
 x +code check archer behavior, all seem to be guarding the right side.
 x +code check if walls are repaired
 x +code big trolls hitbox
-+balance night 2 (green) too jumpy
+x +balance night 2 (green) too jumpy
 x +code castle coin indicator too high
 
 +code cycle phase consists of final night, DAYPASTEL
@@ -92,3 +92,10 @@ x +code walls should look broken sooner, have a little more health
 +code wall damage gibs spawn too low (something with baseline offset?)
 x +visual switch first boss night with D9's night
 +code walls don't repair
++testers don't get why horse is slow
++testers don't see night count
++testers have too much money
+x +testers build castle too soon
++testers castle is too profitable
+x +testers shouldn't get tip (expansion) at night
++code mochi api

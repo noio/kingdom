@@ -344,15 +344,22 @@ package
         public static function explode(object:FlxSprite, group:FlxGroup, portion:Number = 1, gibsize:int=4, rounded:Boolean=true):Vector.<FlxParticle>{
             var gibs:Vector.<FlxParticle> = new Vector.<FlxParticle>()
             var gib:FlxParticle;
+
             for (var x:int = 0; x < object.framePixels.width; x += gibsize){
                 for (var y:int = 0; y < object.framePixels.height; y += gibsize){
-                    if ((object.pixels.getPixel32(x+gibsize/2,y+gibsize/2) >>> 24) > 0){
+                    if ((object.framePixels.getPixel32(x+gibsize/2,y+gibsize/2) >>> 24) > 0){
                         if (FlxG.random() < portion){
                             gib = group.recycle(FlxParticle) as FlxParticle;
                             if (gib.frameWidth != gibsize || gib.frameHeight != gibsize){
                                 gib.makeGraphic(gibsize,gibsize,0,true);
                             }
                             gib.revive();
+
+                            // _flashPoint.x = X;
+                            // _flashPoint.y = Y;
+                            // _flashRect2.width = bitmapData.width;
+                            // _flashRect2.height = bitmapData.height;
+                            // gib.framePixels.copyPixels(object._framePixels,rect,point,null,null,true);
                             gib.stamp(object, -x, -y);
                             if (rounded){
                                 gib.framePixels.setPixel32(0,0,0);

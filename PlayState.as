@@ -89,7 +89,7 @@ package
         
         
         //CONSTANTS
-        public static const CHEATS:Boolean = false;
+        public static const CHEATS:Boolean = true;
         public static const WEATHERCONTROLS:Boolean = false;
         
         public static const GAME_WIDTH:int = 3840;
@@ -133,7 +133,6 @@ package
         public var recruitedCitizen:Boolean      = false;
         public var boughtItem:Boolean            = false;
         public var boughtItemAdvice:Boolean      = false;
-        public var expandedKingdom:Boolean       = false;
         public var expandedKingdomAdvice:Boolean = false;
         public var savedProgress:String          = null;
         public var restoreProgress:String        = null;
@@ -240,7 +239,6 @@ package
             recruitedCitizen = true;
             boughtItem = true;
             boughtItemAdvice = true
-            expandedKingdom = true;
             expandedKingdomAdvice = true;
         }
                
@@ -495,7 +493,8 @@ package
                 panTo(shops.members[1], 5.0);
             }
             
-            if (boughtItem && !expandedKingdom && !expandedKingdomAdvice && characters.length >= 4){
+            if (boughtItem && !expandedKingdomAdvice && characters.length >= 4 
+                && weather.timeOfDay > 0.3 && weather.timeOfDay < 0.6){
                 expandedKingdomAdvice = true;
                 showText("Expand your kingdom by building a wall here.");
                 panTo(walls.members[1], 5.0, -12);

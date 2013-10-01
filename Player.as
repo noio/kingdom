@@ -23,7 +23,7 @@ package
         public static const MAX_FOOD_BONUS:Number = 50;
         public static const MAX_FOOD:Number = 100;
         public static const HIT_RATE:Number = 0.2;
-        public static const SELECT_DISTANCE:Number = 6;
+        public static const SELECT_DISTANCE:Number = 10;
         
         private var playstate:PlayState;
 
