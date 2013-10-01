@@ -204,7 +204,7 @@ package
             for (var i:int = 0; i < group.length; i++){
                 c = group.members[i];
                 if (c != null && c.alive && c.exists && Math.abs(c.x - x) < 96){
-                    FlxG.log("Shooting "+c+" at "+c.x+','+c.y);
+                    // FlxG.log("Shooting "+c+" at "+c.x+','+c.y);
                     play('shoot', true);
                     FlxG.play(ShootSound).proximity(x, y, playstate.player, FlxG.width);
 					// walk 1 pixel towards goal, just to get

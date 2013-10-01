@@ -44,6 +44,7 @@ package
             retreating = false;
             hasCoin = false;
             wait = true;
+            visible = false;
             if (! big == playstate.trollBig){
                 big = playstate.trollBig;
                 loadAnims();
@@ -125,6 +126,7 @@ package
 
         public function go():void{
             wait = false;
+            visible = true;
         }
         
         override public function update():void {

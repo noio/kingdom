@@ -41,7 +41,7 @@ package
                 }
             }
             else if (m is FlxSprite){
-                if (!m.alive){
+                if (!m.alive || !m.visible){
                     return;
                 }
                 if (m is Wall && (m as Wall).stage == 0){

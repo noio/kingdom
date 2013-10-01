@@ -89,7 +89,7 @@ package
         
         
         //CONSTANTS
-        public static const CHEATS:Boolean = true;
+        public static const CHEATS:Boolean = false;
         public static const WEATHERCONTROLS:Boolean = false;
         
         public static const GAME_WIDTH:int = 3840;
@@ -136,6 +136,7 @@ package
         public var expandedKingdom:Boolean       = false;
         public var expandedKingdomAdvice:Boolean = false;
         public var savedProgress:String          = null;
+        public var restoreProgress:String        = null;
         
         // Internals
 		public var textTimeout:Number = 0;
@@ -151,6 +152,11 @@ package
         // Cheatvars
         private var cheatNoTrolls:Boolean = false;
         private var untouchable:Boolean = false;
+
+        public function PlayState(progress:String=null){
+            super();
+            restoreProgress = progress;
+        }
         
         //=== INITIALIZATION ==//
         override public function create():void
@@ -393,6 +399,11 @@ package
         //=== GAME LOGIC ===//       
         override public function update():void{
             // Collisions
+
+            if (restoreProgress){
+                setProgress(restoreProgress);
+            }
+
             FlxG.collide(level, coins);
             FlxG.collide(level, trolls);
             FlxG.collide(level, gibs);
@@ -495,7 +506,10 @@ package
             if(gameover && FlxG.mouse.justPressed())
             {
                 FlxG.mouse.hide();
+                // var newState:PlayState = new PlayState(savedProgress);
+                // FlxG.switchState(newState);
                 FlxG.switchState(new PlayState());
+                // FlxG.log("Switching gamestate")
             }
             
             super.update();
@@ -577,25 +591,25 @@ package
                 }
 
                 if (FlxG.keys.justPressed("ONE")){
-                    setProgress('D1 X2 B2 P0 F0 H0 W000011 C0 G7 S00');
+                    setProgress('D1 A2 X1000 B2 P0 F0 H0 W000011 C0 G7 S00');
                 }
                 if (FlxG.keys.justPressed("TWO")){
-                    setProgress('D2 X7 B2 P0 F1 H2 W000011 C0 G4 S00');
+                    setProgress('D2 A7 X1000 B2 P0 F1 H2 W000011 C0 G4 S00');
                 }
                 if (FlxG.keys.justPressed("THREE")){
-                    setProgress('D3 X12 B2 P0 F2 H3 W010010 C0 G4 S00');
+                    setProgress('D3 A12 X1000 B2 P0 F2 H3 W010010 C0 G4 S00');
                 }
                 if (FlxG.keys.justPressed("FOUR")){
-                    setProgress('D4 X17 B2 P1 F2 H5 W020011 C1 G1 S00');   
+                    setProgress('D4 A17 X1000 B2 P1 F2 H5 W020011 C1 G1 S00');   
                 }
                 if (FlxG.keys.justPressed("FIVE")){
-                    setProgress('D5 X21 B3 P0 F2 H6 W020011 C1 G0 S00');   
+                    setProgress('D5 A21 X1000 B3 P0 F2 H6 W020011 C1 G0 S00');   
                 }
                 if (FlxG.keys.justPressed("SIX")){
-                    setProgress('D6 X25 B4 P0 F2 H5 W010001 C1 G7 S00');   
+                    setProgress('D6 A25 X1000 B4 P0 F2 H5 W010001 C1 G7 S00');   
                 }
                 if (FlxG.keys.justPressed("SEVEN")){
-                    setProgress('D7 X29 B2 P2 F3 H6 W030031 C1 S00 G0');   
+                    setProgress('D7 A29 X1000 B2 P2 F3 H6 W030031 C1 S00 G0');   
                 }
                 if (FlxG.keys.justPressed("EIGHT")){
                     // setProgress('D3 X12 B2 P1 F1 H3 W010012 C0 G3');   
@@ -630,7 +644,7 @@ package
         
         // These WILL scale the lowest walls
         public function phaseNightThree():void{
-            trollStats(26, 1, 30, 2, false, 12.0);
+            trollStats(26, 1, 30, 2, false, 12.0); // Grunts
             spawnTrolls(20);
         }
         
@@ -643,7 +657,7 @@ package
         // They are faster but more chaotic, they might
         // break your walls, which will kill you in the next wave.
         public function phaseNightFive():void{
-            trollStats(35, 2, 30, 4, false, 4.0);
+            trollStats(35, 2, 30, 4, false, 4.0); // Chaotic
             spawnTrolls(36);
         }
 
@@ -658,7 +672,7 @@ package
             // trollMaxSpeed = 30;
             // trollHealth = 1
             // spawnTrolls(32);
-            trollStats(20, 30, 10, 0, true, 16.0)
+            trollStats(20, 30, 10, 999999, true, 16.0)
             spawnTrolls(2);
         }
 
@@ -667,22 +681,26 @@ package
         // disadvantage to not having walls.
         // You will need them back in the next wave though.
         public function phaseNightEight():void{
-            trollHealth = 1;
-            trollBig = false;
-            spawnTrolls(60);
-        }
-
-        public function phaseNightNine():void{
-            trollBig = true;
-            trollHealth = 10;
-            trollMaxSpeed = 24;
+            trollStats(40, 2, 50, 3, false, 12.0)
             spawnTrolls(10);
         }
 
+        // You need the highest walls here
+        public function phaseNightNine():void{
+            trollStats(30, 4, 45, 4, false, 8.0)
+            spawnTrolls(24);
+        }
+
+        // Kill the player off
         public function phaseNightTen():void{
-            trollBig = false;
-            trollHealth = 2;
-            spawnTrolls(100);
+            trollStats(20, 30, 10, 999999, true, 16.0); // Boss
+            spawnTrolls(4);
+            trollStats(30, 4, 45, 4, false, 8.0); // Strong 
+            spawnTrolls(20);
+            trollStats(40, 2, 50, 3, false, 12.0); // Jumper
+            spawnTrolls(10);
+            trollStats(26, 1, 30, 2, false, 12.0); // Grunts
+            spawnTrolls(40);
         }
         
         public function phaseNightCycle():void{
@@ -736,7 +754,7 @@ package
             [WeatherPresets.DUSKCLEAR, 20, null, null, null],
             // SEVEN (31-34)
             // RED MOON
-            [WeatherPresets.NIGHTREDMOON, 60, 30, phaseNightSeven, MusicNight3],
+            [WeatherPresets.NIGHTSHINE, 60, 30, phaseNightSeven, MusicNight3],
             [WeatherPresets.DAWNREDMOON, 20, null, daybreak, MusicDay5],
             [WeatherPresets.DAYORANGESKY, 60, null, null, null],
             [WeatherPresets.DUSKFOGGY, 20, null, null, null],
@@ -744,11 +762,11 @@ package
             // BIG WAVE
             [WeatherPresets.NIGHTPURPLE, 80, 30, phaseNightEight, MusicNight4],  
             [WeatherPresets.DAWNBRIGHT, 20, null, daybreak, null],
-            [WeatherPresets.DAYPASTEL, 40, null, null, MusicDay2],            
+            [WeatherPresets.DAYPASTEL, 70, null, null, MusicDay2],            
             [WeatherPresets.DUSKTAN, 20, null, null, MusicNight4],
             // NINE (39-42)
             // SINGLE TROLL, MASSIVE HEALTH
-            [WeatherPresets.NIGHTSHINE, 60, 30, phaseNightNine, null],
+            [WeatherPresets.NIGHTREDMOON, 60, 30, phaseNightNine, null],
             [WeatherPresets.DAWNBROWN, 20, null, daybreak, null],
             [WeatherPresets.DAYDUSTY, 40, null, null, null],             //TODO
             [WeatherPresets.DUSKRED, 20, null, null, MusicNight3],            //TODO
@@ -885,7 +903,8 @@ package
 
             var s:String = '';
             s += 'D' + day + ' ';
-            s += 'X' + phase + ' ';
+            s += 'A' + phase + ' ';
+            s += 'X' + int(player.x) + ' ';
             s += 'B' + numBeggars + ' ';
             s += 'P' + numCitizens[Citizen.POOR] + ' ';
             s += 'F' + numCitizens[Citizen.FARMER] + ' ';
@@ -905,7 +924,8 @@ package
             FlxG.log("Skip to " + s);
 
             var newDay:int = parseInt(s.match(/D(\d+)/)[1]);
-            var ph:int = parseInt(s.match(/X(\d+)/)[1]);
+            var ph:int = parseInt(s.match(/A(\d+)/)[1]);
+            var playerX:int = parseInt(s.match(/X(\d+)/)[1]);
             var numBeggars:int = parseInt(s.match(/B(\d+)/)[1]);
             var numPoor:int = parseInt(s.match(/P(\d+)/)[1]);
             var numFarmers:int = parseInt(s.match(/F(\d+)/)[1]);
@@ -918,6 +938,8 @@ package
             while (beggars.countLiving() < numBeggars){
                 beggars.add(new Citizen((kingdomRight + kingdomLeft) / 2,0));
             }
+
+            player.x = playerX;
 
             characters.callAll('kill');
             archers.callAll('kill');
