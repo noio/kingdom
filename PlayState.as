@@ -6,6 +6,8 @@ package
     import flash.utils.getDefinitionByName;
     import flash.utils.getQualifiedClassName;
     import flash.filters.BlurFilter;
+
+    import mochi.as3.MochiDigits;
     
     public class PlayState extends FlxState
     {
@@ -118,7 +120,7 @@ package
         public var minBeggars:int = 0;
         public var retreatDelay:Number = 0;
         public var gameover:Boolean = false;
-        public var day:int = 0;
+        public var day:MochiDigits = new MochiDigits(0)
         
         public var trollHealth:Number = 1;
         public var trollMaxSpeed:Number = 20;
@@ -411,6 +413,7 @@ package
 
             if (restoreProgress){
                 setProgress(restoreProgress);
+                restoreProgress = null;
             }
 
             FlxG.collide(level, coins);
@@ -523,7 +526,7 @@ package
                 FlxG.mouse.hide();
                 // var newState:PlayState = new PlayState(savedProgress);
                 // FlxG.switchState(newState);
-                FlxG.switchState(new PlayState());
+                FlxG.switchState(new PlayState(savedProgress));
                 // FlxG.log("Switching gamestate")
             }
             
@@ -898,8 +901,8 @@ package
             if (castle.stage >= 2) {
                 (coins.recycle(Coin) as Coin).drop(castle, player);
             }
-            day ++;
-            showCenterText(Utils.toRoman(day));
+            day.addValue(1);
+            showCenterText(Utils.toRoman(day.value));
             saveProgress();
         }
 
@@ -918,7 +921,7 @@ package
             }
 
             var s:String = '';
-            s += 'D' + day + ' ';
+            s += 'D' + day.value + ' ';
             s += 'A' + phase + ' ';
             s += 'X' + int(player.x) + ' ';
             s += 'B' + numBeggars + ' ';
@@ -937,6 +940,8 @@ package
             // Parse the string
             // 'N1 X1 B2 P0 F0 H0 W000011 C0 G7'
             progressAll();
+            FlxG.flash(0xFFFFFFFF, 3);
+
             FlxG.log("Skip to " + s);
 
             var newDay:int = parseInt(s.match(/D(\d+)/)[1]);
@@ -993,7 +998,7 @@ package
             (player as Player).changeCoins(gold - (player as Player).coins);
 
             phase = ph - 1;
-            day = newDay - 1;
+            day.setValue(newDay - 1);
             nextPhase();
 
         }
@@ -1058,12 +1063,12 @@ package
             trollRetreat(2);
             FlxG.mouse.show();
             showText("No crown, no king. Game over.");
-            showText("Click to start again.");
-            FlxG.fade(0, 30, endGame);
+            showText("Click to continue.");
+            FlxG.fade(0, 20, endGame);
         }
 
         public function endGame():void{
-            FlxG.switchState(new GameOverState());
+            FlxG.switchState(new GameOverState(day.value));
         }
         
         //=== RENDERING ==//
