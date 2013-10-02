@@ -93,7 +93,7 @@ x +code walls should look broken sooner, have a little more health
 x +visual switch first boss night with D9's night
 +code walls don't repair
 +testers don't get why horse is slow
-+testers don't see night count
+x +testers don't see night count
 +testers have too much money
 x +testers build castle too soon
 +testers castle is too profitable

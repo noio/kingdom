@@ -76,6 +76,7 @@ package
         public var fx:FlxGroup;
         public var fog:Fog;
         public var text:FlxText;
+        public var centerText:FlxText;
         public var sack:Coinsack;
         public var noise:FlxSprite;
         
@@ -168,12 +169,14 @@ package
             buildLevel(LevelCity);
             weather.tweenTo(WeatherPresets.FOGGY, 0);
             
-            add(minimap = new Minimap(0, FlxG.height - 1 ,FlxG.width, 1));
-            minimap.add(trolls, 0xFF87B587);
-            minimap.add(player, 0xff765DB3);
-            minimap.add(beggars, 0xFF7D6841);
-            minimap.add(characters, 0xFFA281F8);
-            minimap.add(walls, 0xFF969696);
+            if (CHEATS){
+                add(minimap = new Minimap(0, FlxG.height - 1 ,FlxG.width, 1));
+                minimap.add(trolls, 0xFF87B587);
+                minimap.add(player, 0xff765DB3);
+                minimap.add(beggars, 0xFF7D6841);
+                minimap.add(characters, 0xFFA281F8);
+                minimap.add(walls, 0xFF969696);
+            }
             
             showCoins();
 
@@ -288,9 +291,16 @@ package
             add(text = new FlxText(10, 138, FlxG.width, "TEXT"));
             // FlxG.log(font)
             text.setFormat("04b03", 8, 0xFFFFFFFF, "left", 0xAA333333);
-			text.visible = false;
-			text.scrollFactor.x = 0;
-			text.alpha = 0.7;
+            text.visible = false;
+            text.scrollFactor.x = 0;
+            text.alpha = 0.7;
+
+            add(centerText = new FlxText(0, FlxG.height/2 - 32, FlxG.width, "TEXT"));
+
+            centerText.setFormat("04b03", 32, 0xFFFFFFFF, "center", 0xAA333333);
+            centerText.visible = false;
+            centerText.scrollFactor.x = 0;
+            centerText.alpha = 1.0;
             
             add(water = new Water(-4,waterHeight,FlxG.width+8,44,lights,weather));
             add(arrows = new FlxGroup(64));
@@ -465,6 +475,11 @@ package
             } else {
     			text.alpha = Math.min(TEXT_MAX_ALPHA, textTimeout);
                 textTimeout -= FlxG.elapsed;
+            }
+            if (centerText.visible && centerText.alpha < 0.001){
+                centerText.visible = false;
+            } else {
+                centerText.alpha -= 0.05 * FlxG.elapsed;
             }
             
             // Camera follow timeout
@@ -878,11 +893,12 @@ package
 
         public function daybreak():void{
             trollRetreat();
-            for( var i:int = 0; i <= castle.stage; i ++){
+            (coins.recycle(Coin) as Coin).drop(castle, player);
+            if (castle.stage >= 2) {
                 (coins.recycle(Coin) as Coin).drop(castle, player);
             }
             day ++;
-            showText(Utils.toRoman(day));
+            showCenterText(Utils.toRoman(day));
             saveProgress();
         }
 
@@ -1072,6 +1088,12 @@ package
 	            text.visible = true;
 				textTimeout = Math.max(TEXT_MIN_TIME, TEXT_READ_SPEED * text.text.length);
 			}
+        }
+
+        public function showCenterText(t:String):void{
+            centerText.text = t;
+            centerText.visible = true;
+            centerText.alpha = 0.999;
         }
         
         public function panTo(o:FlxSprite, duration:Number=8.0, lead:Number=0):void{

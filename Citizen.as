@@ -48,6 +48,10 @@ package
         public static const SHOVEL_GOAL_DIST:Number = 600;
 		public static const GIVE_COOLDOWN:Number = 10.0;
         public static const COWER_COOLDOWN:Number = 5.0;
+
+        // Other consts
+        public static const HUNTER_BORDER_RANGE:Number = 128;
+        public static const MAX_HUNGRY:Number = 5;
         
         // Variables
         public var occupation:int   = BEGGAR;
@@ -61,6 +65,7 @@ package
         public var shovelCooldown:Number = 0;
 		public var target:FlxObject;
         public var guardLeftBorder:Boolean;
+        public var hungry:int = 0;
                 
         public var playstate:PlayState;
         public var castle:Castle;
@@ -94,6 +99,7 @@ package
                     addAnimation('idle',[7,8,7,8,7,6],2,true);
                     addAnimation('cower',[9,10],2,false);
                     maxVelocity.x = 15;
+                    hungry = 0;
                     break;
                 case POOR:
                     if (occupation == BEGGAR)
@@ -127,7 +133,7 @@ package
                     Utils.replaceColor(pixels, BASE_COLOR, myColor);
                     Utils.replaceColor(pixels, BASE_SHADE, Utils.interpolateColor(myColor,0xFF000000,0.2));
                     drawFrame(true);
-                    maxVelocity.x = 15;
+                    maxVelocity.x = 25;
                     addAnimation('walk',[0,1,2,3,4,5],10,true);
                     addAnimation('idle',[6,7,6,7,6,8],2,true);
                     addAnimation('shovel',[8,9,10,9],6,true)
@@ -298,17 +304,29 @@ package
             
             var l:int, r:int;
             
-            if (occupation == HUNTER && (playstate.weather.timeOfDay >= 0.65 || playstate.weather.timeOfDay < 0.20)) {
+            if (occupation == HUNTER) {
                 // Hunters gather around borders at night
-                if (guardLeftBorder){
-                    l = playstate.kingdomLeft;
-                    r = playstate.kingdomLeft + 32;
+                if (playstate.weather.timeOfDay >= 0.65 || playstate.weather.timeOfDay < 0.20){
+                    if (guardLeftBorder){
+                        l = playstate.kingdomLeft;
+                        r = playstate.kingdomLeft + 32;
+                    } else {
+                        l = playstate.kingdomRight - 32;
+                        r = playstate.kingdomRight;
+                    }
                 } else {
-                    l = playstate.kingdomRight - 32;
-                    r = playstate.kingdomRight;
+                    l = playstate.kingdomLeft - HUNTER_BORDER_RANGE;
+                    r = playstate.kingdomRight + HUNTER_BORDER_RANGE;
                 }
             } else if (occupation == BEGGAR){
                 // Beggars gather outside borders
+                if (playstate.beggars.countLiving() > playstate.minBeggars){
+                    hungry ++;
+                    if (hungry > MAX_HUNGRY){
+                        Utils.explode(this, playstate.gibs, 1.0);
+                        kill();
+                    }
+                }
                 if (x < PlayState.GAME_WIDTH/2){
                     l = playstate.kingdomLeft - 256;
                     r = playstate.kingdomLeft;
