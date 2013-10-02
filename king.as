@@ -5,7 +5,8 @@ package
 	import flash.events.Event;
 	
 	[SWF(width="864", height="480", backgroundColor="#000000")]
-	[Frame(factoryClass="Preloader")]
+	
+	// [Frame(factoryClass="Preloader")]
 
 	public class king extends FlxGame
 	{
@@ -14,9 +15,9 @@ package
 
 		public function king()
 		{			
-			super(288,160,MenuState,3, 60, 60);
-			addEventListener(Event.ADDED_TO_STAGE, init);
 			var _mochiads_game_id:String = "0388f37fc4182a78";
+			super(288,160,MenuState,3, 60, 60, true);
+			addEventListener(Event.ADDED_TO_STAGE, init);
 		}
 
 		public function init(e:Event):void{
