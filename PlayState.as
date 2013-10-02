@@ -135,6 +135,7 @@ package
         public var boughtItem:Boolean            = false;
         public var boughtItemAdvice:Boolean      = false;
         public var expandedKingdomAdvice:Boolean = false;
+        public var horseAdvice:Boolean           = false;
         public var savedProgress:String          = null;
         public var restoreProgress:String        = null;
         

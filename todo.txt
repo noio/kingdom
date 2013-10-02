@@ -96,6 +96,6 @@ x +visual switch first boss night with D9's night
 x +testers don't see night count
 +testers have too much money
 x +testers build castle too soon
-+testers castle is too profitable
+x +testers castle is too profitable
 x +testers shouldn't get tip (expansion) at night
 +code mochi api

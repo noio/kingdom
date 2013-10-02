@@ -50,7 +50,7 @@ package
         public static const COWER_COOLDOWN:Number = 5.0;
 
         // Other consts
-        public static const HUNTER_BORDER_RANGE:Number = 128;
+        public static const HUNTER_BORDER_RANGE:Number = 256;
         public static const MAX_HUNGRY:Number = 5;
         
         // Variables

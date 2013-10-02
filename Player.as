@@ -128,6 +128,10 @@ package
                     food -= FlxG.elapsed;
                 }
                 maxVelocity.x = MIN_SPEED + Math.min(1,food/MAX_FOOD_BONUS) * (MAX_SPEED-MIN_SPEED);
+                if (!playstate.horseAdvice && food < 10){
+                    playstate.horseAdvice = true;
+                    playstate.showText("Horse is tired. Let him rest on the grass.")
+                }
             }
             if(FlxG.keys.LEFT){
                 acceleration.x = -maxVelocity.x*4;
