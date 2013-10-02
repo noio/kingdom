@@ -64,15 +64,16 @@
     <Farmland x="2152" y="104"/>
     <Farmland x="1064" y="104"/>
     <Farmland x="1152" y="104"/>
-    <Farmland x="2696" y="104"/>
-    <Farmland x="2792" y="104"/>
+    <Farmland x="2300" y="104"/>
+    <Farmland x="2604" y="104"/>
     <Farmland x="1568" y="104"/>
+    <Farmland x="2368" y="104"/>
   </farmlands>
   <walls>
     <Wall x="1412" y="80"/>
     <Wall x="2232" y="80"/>
-    <Wall x="2892" y="80"/>
-    <Wall x="972" y="80"/>
+    <Wall x="2688" y="80"/>
+    <Wall x="996" y="80"/>
     <Wall x="1812" y="80"/>
     <Wall x="1988" y="80"/>
   </walls>
@@ -85,10 +86,10 @@
     <Torch x="1452" y="100"/>
     <Torch x="1656" y="100"/>
     <Torch x="2136" y="100"/>
-    <Torch x="2352" y="100"/>
-    <Torch x="2432" y="100"/>
+    <Torch x="2280" y="100"/>
+    <Torch x="2436" y="100"/>
     <Torch x="1132" y="100"/>
-    <Torch x="1028" y="100"/>
+    <Torch x="1040" y="100"/>
     <Firefly x="348" y="144"/>
     <Firefly x="412" y="136"/>
     <Firefly x="292" y="116"/>
@@ -113,7 +114,7 @@
     <Firefly x="3632" y="144"/>
     <Torch x="1544" y="100"/>
     <Torch x="2216" y="100"/>
-    <Torch x="2764" y="100"/>
-    <Torch x="2868" y="100"/>
+    <Torch x="2596" y="100"/>
+    <Torch x="2672" y="100"/>
   </lights>
 </level>

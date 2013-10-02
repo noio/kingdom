@@ -288,15 +288,17 @@ package
             if (occupation == FARMER) {
                 // Otherwise check for a wall to work on
                 var needWork:Array = new Array();
+                var dist:Number = Number.MAX_VALUE;
+                var wall:Wall, closestWall:Wall = null;
                 for (var i:int = 0; i < playstate.walls.length; i++){
-                    var wall:Wall = playstate.walls.members[i] as Wall;
-                    if (wall != null && wall.needsWork()){
-                        needWork.push(wall);
+                    wall = playstate.walls.members[i] as Wall;
+                    if (wall != null && wall.needsWork() && (Math.abs(wall.x - x) < dist)){
+                        closestWall = wall;
+                        dist = Math.abs(wall.x - x);
                     }                    
                 }
-                if (needWork.length > 0){
-                    var idx:int = FlxG.random() * needWork.length;
-                    goal = needWork[idx].x + needWork[idx].width / 2;
+                if (closestWall != null){
+                    goal = closestWall.x + closestWall.width / 2;
                     return;    
                 }
                 
