@@ -18,6 +18,10 @@ package
         [Embed(source="/assets/sound/throw.mp3")] private var ThrowSound:Class;
         [Embed(source="/assets/sound/stolen.mp3")] private var StolenSound:Class;
         
+        public static const BASE_SKIN:uint = 0xFFedbebf;
+        public static const BASE_DARK:uint = 0xFFbd9898;
+        public static const BASE_EYES:uint = 0xFFa18383;
+
         public static const MAX_SPEED:Number = 80;
         public static const MIN_SPEED:Number = 25;
         public static const MAX_FOOD_BONUS:Number = 50;
@@ -51,6 +55,8 @@ package
             
             playstate = (FlxG.state as PlayState);
 
+
+
             addAnimation('walk_slow',[0,1,2,3,4,5,6,7],10,true);
             addAnimation('walk_fast',[0,1,2,3,4,5,6,7],15,true);
             addAnimation('stand',[8],10,true);
@@ -59,6 +65,11 @@ package
             play('stand');
             playstate.player = this;
             
+            var d:Number = Math.random() * 20;
+            var skin:uint = Utils.HSVtoRGB(d, 0.19 + (d / 100), 0.97 - (d / 33));
+            Utils.replaceColor(pixels, BASE_SKIN, skin);
+            Utils.replaceColor(pixels, BASE_DARK, Utils.interpolateColor(skin,0xFF000000,0.2));
+            Utils.replaceColor(pixels, BASE_EYES, Utils.interpolateColor(skin,0xFF000000,0.5));
         }
 		
         public function changeCoins(amt:int):void{

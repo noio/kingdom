@@ -89,13 +89,14 @@ x +balance day 6 should last a little longer too
 x +balance trolls should spread out a little more
 x +code walls should look broken sooner, have a little more health
 +code resume from last daybreak with a nice fx
-+code wall damage gibs spawn too low (something with baseline offset?)
+x +code wall damage gibs spawn too low (something with baseline offset?)
 x +visual switch first boss night with D9's night
-+code walls don't repair
-+testers don't get why horse is slow
+x +code walls don't repair
+x +testers don't get why horse is slow
 x +testers don't see night count
 +testers have too much money
 x +testers build castle too soon
 x +testers castle is too profitable
 x +testers shouldn't get tip (expansion) at night
 +code mochi api
++visual ease up on the fx

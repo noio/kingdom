@@ -21,8 +21,11 @@ package
         [Embed(source="/assets/sound/hitcitizen.mp3")] private var HitSound:Class;
 
         
-        public static const BASE_COLOR:uint = 0xFF628685;
-        public static const BASE_SHADE:uint = 0xFF455e5d;
+        public static const BASE_COLOR:uint = 0xFF567271;
+        public static const BASE_SHADE:uint = 0xFF394b4a;
+        public static const BASE_SKIN:uint = 0xFFedbebf;
+        public static const BASE_DARK:uint = 0xFFbd9898;
+        public static const BASE_EYES:uint = 0xFFa18383;
         
         public static const BEGGAR:int = 0;
         public static const POOR:int   = 1;
@@ -60,6 +63,7 @@ package
         public var t:Number         = 0;
         public var goal:Number;
         public var myColor:uint;
+        public var skin:uint;
         public var coins:int = 0;
 		public var giveCooldown:Number = 0;
         public var shovelCooldown:Number = 0;
@@ -76,7 +80,8 @@ package
             drag.x = 500;
             guardLeftBorder = (FlxG.random() > 0.5);
             myColor = Utils.HSVtoRGB(FlxG.random()*360, 0.1+FlxG.random()*0.2, 0.6);
-
+            var d:Number = Math.random() * 20;
+            skin = Utils.HSVtoRGB(d, 0.19 + (d / 100), 0.97 - (d / 33));
 
             playstate = FlxG.state as PlayState;
             castle = playstate.castle;
@@ -94,7 +99,7 @@ package
                 case BEGGAR:
                     if (occupation != BEGGAR)
                         playstate.beggars.add(playstate.characters.remove(this,true));
-                    loadGraphic(BeggarImg,true,true,32,32);
+                    loadGraphic(BeggarImg,true,true,32,32,true);
                     addAnimation('walk',[0,1,2,3,4,5],5,true);
                     addAnimation('idle',[7,8,7,8,7,6],2,true);
                     addAnimation('cower',[9,10],2,false);
@@ -133,14 +138,18 @@ package
                     Utils.replaceColor(pixels, BASE_COLOR, myColor);
                     Utils.replaceColor(pixels, BASE_SHADE, Utils.interpolateColor(myColor,0xFF000000,0.2));
                     drawFrame(true);
-                    maxVelocity.x = 25;
-                    addAnimation('walk',[0,1,2,3,4,5],10,true);
+                    maxVelocity.x = 21 + Math.random() * 3;
+                    addAnimation('walk',[0,1,2,3,4,5],12,true);
                     addAnimation('idle',[6,7,6,7,6,8],2,true);
                     addAnimation('shovel',[8,9,10,9],6,true)
 					addAnimation('give',[11,12,13],15,false);
 					addAnimation('hack',[14],15,false);
                     break;
             }
+
+            Utils.replaceColor(pixels, BASE_SKIN, skin);
+            Utils.replaceColor(pixels, BASE_DARK, Utils.interpolateColor(skin,0xFF000000,0.2));
+            Utils.replaceColor(pixels, BASE_EYES, Utils.interpolateColor(skin,0xFF000000,0.5));
             occupation = occ;
             offset.x = 12;
             offset.y = 8;

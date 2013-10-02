@@ -123,8 +123,8 @@ package
         public var trollHealth:Number = 1;
         public var trollMaxSpeed:Number = 20;
         public var trollJumpHeight:Number = 20;
-        public var trollJumpiness:Number = 0.001;
-        public var trollConfusion:Number = 0.001;
+        public var trollJumpiness:Number = 30;
+        public var trollConfusion:Number = 30;
         public var trollBig:Boolean = false;
         
         public var grassTiles:Array;
