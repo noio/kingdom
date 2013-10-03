@@ -13,7 +13,7 @@ package
 
 		public function king()
 		{			
-			super(288,160,MenuState,3, 60, 60, true);
+			super(288,160,MenuState,3, 60, 60, false);
 			FlxG.debug = true;
 		}
 

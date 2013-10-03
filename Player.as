@@ -8,15 +8,19 @@ package
     import org.flixel.FlxGroup;
     import org.flixel.FlxObject;
     import org.flixel.FlxPoint;
+    import org.flixel.FlxSound;
+
     
     public class Player extends FlxSprite{
         
         [Embed(source='/assets/gfx/king.png')]     private var PlayerImg:Class;
 
-        [Embed(source="/assets/sound/pickup.mp3")] private var PickupSound:Class;
+        [Embed(source="/assets/sound/pickup.mp3")] public static const PickupSound:Class;
         [Embed(source="/assets/sound/build.mp3")] private var BuildSound:Class;
         [Embed(source="/assets/sound/throw.mp3")] private var ThrowSound:Class;
         [Embed(source="/assets/sound/stolen.mp3")] private var StolenSound:Class;
+
+        public static var pickupSound:FlxSound = FlxG.loadSound(PickupSound);
         
         public static const BASE_SKIN:uint = 0xFFedbebf;
         public static const BASE_DARK:uint = 0xFFbd9898;
@@ -74,7 +78,8 @@ package
 		
         public function changeCoins(amt:int):void{
             if (amt > 0) {
-                FlxG.play(PickupSound).proximity(x, y, this, FlxG.width);
+                pickupSound.play(true);
+                pickupSound.proximity(x, y, this, FlxG.width);
             }
 			coins += amt;
 			playstate.showCoins();

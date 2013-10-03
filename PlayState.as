@@ -609,25 +609,25 @@ package
                 }
 
                 if (FlxG.keys.justPressed("ONE")){
-                    setProgress('D1 A2 X1000 B2 P0 F0 H0 W000011 C0 G7 S00');
+                    // setProgress('D1 A2 X1000 B2 P0 F0 H0 W000011 C0 G7 S00');
                 }
                 if (FlxG.keys.justPressed("TWO")){
-                    setProgress('D2 A7 X1000 B2 P0 F1 H2 W000011 C0 G4 S00');
+                    // setProgress('D2 A7 X1000 B2 P0 F1 H2 W000011 C0 G4 S00');
                 }
                 if (FlxG.keys.justPressed("THREE")){
-                    setProgress('D3 A12 X1000 B2 P0 F2 H3 W010010 C0 G4 S00');
+                    setProgress('D3 A12 X1900 B4 P0 F1 H2 W000010 C2 S02 G0');
                 }
                 if (FlxG.keys.justPressed("FOUR")){
-                    setProgress('D4 A17 X1000 B2 P1 F2 H5 W020011 C1 G1 S00');   
+                    setProgress('D4 A17 X2099 B2 P1 F4 H5 W030031 C2 S01 G2');   
                 }
                 if (FlxG.keys.justPressed("FIVE")){
-                    setProgress('D5 A21 X1000 B3 P0 F2 H6 W020011 C1 G0 S00');   
+                    setProgress('D5 A21 X2123 B2 P2 F3 H8 W010031 C2 S00 G0');   
                 }
                 if (FlxG.keys.justPressed("SIX")){
-                    setProgress('D6 A25 X1000 B4 P0 F2 H5 W010001 C1 G7 S00');   
+                    // setProgress('D6 A25 X1000 B4 P0 F2 H5 W010001 C1 G7 S00');   
                 }
                 if (FlxG.keys.justPressed("SEVEN")){
-                    setProgress('D7 A29 X1000 B2 P2 F3 H6 W030031 C1 S00 G0');   
+                    // setProgress('D7 A29 X1000 B2 P2 F3 H6 W030031 C1 S00 G0');   
                 }
                 if (FlxG.keys.justPressed("EIGHT")){
                     // setProgress('D3 X12 B2 P1 F1 H3 W010012 C0 G3');   
@@ -648,7 +648,7 @@ package
         }
         
         public function phaseNightOne():void{
-            trollStats(24, 1, 20, 999999, false, 16.0);
+            trollStats(24, 1, 20, 999999, false, 16.0); // Nojump
             spawnTrolls(2);
             panTo(trolls.members[0]);
             showText("They will noodle your stuff away.")
@@ -656,7 +656,7 @@ package
         
         // These trolls still won't scale your lowest walls
         public function phaseNightTwo():void{
-            trollStats(26, 1, 20, 4, false, 12.0);
+            trollStats(26, 1, 20, 2, false, 12.0); //Jump0
             spawnTrolls(12);
         }
         
@@ -668,20 +668,20 @@ package
         
         // The trolls are a little tougher now.
         public function phaseNightFour():void{
-            trollStats(26, 2, 30, 2, false, 10.0);
+            trollStats(26, 3, 30, 2, false, 12.0);
             spawnTrolls(24);
         }
         
         // They are faster but more chaotic, they might
         // break your walls, which will kill you in the next wave.
         public function phaseNightFive():void{
-            trollStats(35, 2, 30, 4, false, 4.0); // Chaotic
+            trollStats(35, 2, 38, 2, false, 4.0); // Chaotic
             spawnTrolls(36);
         }
 
-        // These trolls will scale the high wooden walls
+        // These trolls will scale the stone walls
         public function phaseNightSix():void{
-            trollStats(30, 3, 38, 4, false, 10.0);
+            trollStats(30, 3, 45, 2, false, 10.0);
             spawnTrolls(8);
         }
 
@@ -723,10 +723,7 @@ package
         
         public function phaseNightCycle():void{
             var difficulty:Number = Math.sqrt(phase) / 4;
-            trollMaxSpeed = 20 * difficulty;
-            trollJumpHeight = 120 * difficulty;
-            trollJumpiness = 0.05 * difficulty;
-            trollConfusion = 0.06 / difficulty;
+            trollStats(30, 4, 45, 4, false, 8.0); // Strong 
             spawnTrolls(int(8 * difficulty));
         }
         
@@ -879,7 +876,7 @@ package
                 trollsToSpawn.push(troll);
                 
                 troll = (trolls.recycle(Troll) as Troll);
-                troll.reset(GAME_WIDTH - 16 - o, groundHeight - 40);
+                troll.reset(GAME_WIDTH - 16 - o - troll.width, groundHeight - 40);
                 trollsToSpawn.push(troll);
 
                 updateTrollSpawn();    

@@ -11,15 +11,16 @@ package
     
     public class Citizen extends FlxSprite{
         
-        [Embed(source='/assets/gfx/beggar.png')]    private var BeggarImg:Class;
-        [Embed(source='/assets/gfx/citizen.png')]   private var PoorImg:Class;
-        [Embed(source='/assets/gfx/hunter.png')]    private var HunterImg:Class;
-        [Embed(source='/assets/gfx/farmer.png')]    private var FarmerImg:Class;
+        [Embed(source='/assets/gfx/beggar.png')]    public static const BeggarImg:Class;
+        [Embed(source='/assets/gfx/citizen.png')]   public static const PoorImg:Class;
+        [Embed(source='/assets/gfx/hunter.png')]    public static const HunterImg:Class;
+        [Embed(source='/assets/gfx/farmer.png')]    public static const FarmerImg:Class;
         
-        [Embed(source="/assets/sound/shoot.mp3")] private var ShootSound:Class;
-        [Embed(source="/assets/sound/powerup.mp3")] private var PowerupSound:Class;
-        [Embed(source="/assets/sound/hitcitizen.mp3")] private var HitSound:Class;
+        [Embed(source="/assets/sound/shoot.mp3")] public static const ShootSound:Class;
+        [Embed(source="/assets/sound/powerup.mp3")] public static const PowerupSound:Class;
+        [Embed(source="/assets/sound/hitcitizen.mp3")] public static const HitSound:Class;
 
+        public static var shootSound:FlxSound = FlxG.loadSound(ShootSound);
         
         public static const BASE_COLOR:uint = 0xFF567271;
         public static const BASE_SHADE:uint = 0xFF394b4a;
@@ -112,7 +113,6 @@ package
                     loadGraphic(PoorImg,true,true,32,32,true);
                     Utils.replaceColor(pixels, BASE_COLOR, myColor);
                     Utils.replaceColor(pixels, BASE_SHADE, Utils.interpolateColor(myColor,0xFF000000,0.2));
-                    drawFrame(true);
                     maxVelocity.x = 17;
                     addAnimation('walk',[0,1,2,3,4,5],10,true);
                     addAnimation('idle',[0,6,0,6,0,7],2,true);
@@ -126,7 +126,6 @@ package
                     loadGraphic(HunterImg,true,true,32,32,true);
                     Utils.replaceColor(pixels, BASE_COLOR, myColor);
                     Utils.replaceColor(pixels, BASE_SHADE, Utils.interpolateColor(myColor,0xFF000000,0.2));
-                    drawFrame(true);
                     maxVelocity.x = 18;
                     addAnimation('walk',[0,1,2,3,4,5],10,true);
                     addAnimation('idle',[6,7,6,7,6,8],2,true);
@@ -137,7 +136,6 @@ package
                     loadGraphic(FarmerImg,true,true,32,32,true);
                     Utils.replaceColor(pixels, BASE_COLOR, myColor);
                     Utils.replaceColor(pixels, BASE_SHADE, Utils.interpolateColor(myColor,0xFF000000,0.2));
-                    drawFrame(true);
                     maxVelocity.x = 21 + Math.random() * 3;
                     addAnimation('walk',[0,1,2,3,4,5],12,true);
                     addAnimation('idle',[6,7,6,7,6,8],2,true);
@@ -150,6 +148,7 @@ package
             Utils.replaceColor(pixels, BASE_SKIN, skin);
             Utils.replaceColor(pixels, BASE_DARK, Utils.interpolateColor(skin,0xFF000000,0.2));
             Utils.replaceColor(pixels, BASE_EYES, Utils.interpolateColor(skin,0xFF000000,0.5));
+            drawFrame(true);
             occupation = occ;
             offset.x = 12;
             offset.y = 8;
@@ -221,7 +220,8 @@ package
                 if (c != null && c.alive && c.exists && Math.abs(c.x - x) < 96){
                     // FlxG.log("Shooting "+c+" at "+c.x+','+c.y);
                     play('shoot', true);
-                    FlxG.play(ShootSound).proximity(x, y, playstate.player, FlxG.width);
+                    shootSound.play(true)
+                    shootSound.proximity(x, y, playstate.player, FlxG.width);
 					// walk 1 pixel towards goal, just to get
 					// the facing right
                     goal = (c.x > x) ? x + 1 : x - 1;

@@ -154,7 +154,8 @@ package
                 if (retreating) kill();
             }
             if (y > 200){
-                throw new Error("TROLL FELL OFF :(");
+                // throw new Error("TROLL FELL OFF :(");
+                FlxG.log("TROLL FELL")
                 kill();
             }
             
