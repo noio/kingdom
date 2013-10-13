@@ -88,7 +88,7 @@ x +balance day 5 should last a little longer
 x +balance day 6 should last a little longer too
 x +balance trolls should spread out a little more
 x +code walls should look broken sooner, have a little more health
-+code resume from last daybreak with a nice fx
+x +code resume from last daybreak with a nice fx
 x +code wall damage gibs spawn too low (something with baseline offset?)
 x +visual switch first boss night with D9's night
 x +code walls don't repair

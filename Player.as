@@ -78,7 +78,7 @@ package
 		
         public function changeCoins(amt:int):void{
             if (amt > 0) {
-                pickupSound.play(true);
+                pickupSound.play(false);
                 pickupSound.proximity(x, y, this, FlxG.width);
             }
 			coins += amt;
@@ -87,8 +87,6 @@ package
 
         public function hitByTroll(troll:Troll):void{
             if (troll.hasCoin) return;
-
-            FlxG.shake();
 
             if (lastTrollHit < HIT_RATE) return;
             lastTrollHit = 0;
@@ -100,10 +98,12 @@ package
                 c.justThrown = true;
                 FlxG.play(StolenSound).proximity(x, y, this, FlxG.width);
                 changeCoins(-1);
+                FlxG.shake();
                 return;
             }
 
             if (hasCrown){
+                FlxG.flash(0xFFFFFFFF, 0.1);
                 troll.stealCrown();
                 lostCrown(troll);
                 playstate.crownStolen();

@@ -624,10 +624,10 @@ package
                     setProgress('D5 A21 X2123 B2 P2 F3 H8 W010031 C2 S00 G0');   
                 }
                 if (FlxG.keys.justPressed("SIX")){
-                    // setProgress('D6 A25 X1000 B4 P0 F2 H5 W010001 C1 G7 S00');   
+                    setProgress('D6 A25 X1973 B4 P1 F3 H8 W020001 C2 S00 G4');   
                 }
                 if (FlxG.keys.justPressed("SEVEN")){
-                    // setProgress('D7 A29 X1000 B2 P2 F3 H6 W030031 C1 S00 G0');   
+                    setProgress('D7 A29 X2338 B2 P0 F4 H10 W030031 C3 S01 G3');   
                 }
                 if (FlxG.keys.justPressed("EIGHT")){
                     // setProgress('D3 X12 B2 P1 F1 H3 W010012 C0 G3');   
@@ -730,50 +730,48 @@ package
         public const PHASES:Array = [
             // INTRO (0-3)
             [WeatherPresets.FOGGY, 10, null, phaseFirst, null],
+            // ONE (4-9)
             [WeatherPresets.DAWN, 25, null, daybreak, null],
             [WeatherPresets.SUNNY, 30, null, null, null],
             [WeatherPresets.EVENING, 20, null, null, null],
-            // ONE (4-9)
             [WeatherPresets.NIGHT, 20, null, phaseBeforeNightOne, MusicNight2],
             [null, 50, null, phaseNightOne, null],
+            // TWO (10-14)
             [WeatherPresets.DAWNLIGHTPINK, 20, null, daybreak, null],
             [WeatherPresets.DAYWINDYCLEAR, 30, null, null, MusicDay1],
             [WeatherPresets.DUSKYELLOW, 20, null, null, null],
             [WeatherPresets.EVENINGORANGE, 20, null, null, MusicNight3],
-            // TWO (10-14)
             [WeatherPresets.NIGHTGREEN, 60, 30, phaseNightTwo, null], // GREEN
+            // THREE (15-18)
             [WeatherPresets.DAWNGREY, 20, null, daybreak, null],
             [WeatherPresets.DAYBLEAK, 50, null, null, MusicDay2],
             [WeatherPresets.DUSKWARM, 20, null, null, null],
             [WeatherPresets.EVENINGBLACK, 20, null, null, MusicNight4],
-            // THREE (15-18)
             [WeatherPresets.NIGHTDARK, 60, 30, phaseNightThree, null],
+            // FOUR (19-22)
             [WeatherPresets.DAWNBLEAK, 20, null, daybreak, null],
             [WeatherPresets.DAYSOFT, 40, null, null, null],
             [WeatherPresets.EVENINGMONOTONE, 20, null, null, MusicNight5],
-            // FOUR (19-22)
             [WeatherPresets.NIGHTSUPERDARK, 60, 30, phaseNightFour, null],
+            // FIVE (23-26)
             [WeatherPresets.DAWNLIGHTPINK, 20, null, daybreak, MusicDay3],
             [WeatherPresets.DAYBLEAK, 55, null, null, null],
             [WeatherPresets.EVENINGFOGGY, 40, null, null, MusicNight4],
-            // FIVE (23-26)
             [WeatherPresets.NIGHTFOGGY, 60, 30, phaseNightFive, null],
+            // SIX (27-30)
             [WeatherPresets.DAWNBLEAK, 25, null, daybreak, MusicDay4],
             [WeatherPresets.DAYMONOCHROME, 60, null, null, null],            
-            [WeatherPresets.DUSKPINK, 20, null, null, null],
-            // SIX (27-30)
-            // 4 TROLLS WITH EPIC JUMPING
+            [WeatherPresets.DUSKPINK, 15, null, null, null],
             [WeatherPresets.NIGHTCLEAR, 70, 30, phaseNightSix, MusicNight4],
+            // SEVEN (31-34)
             [WeatherPresets.DAWNCLEARORANGE, 20, null, daybreak, null], 
             [WeatherPresets.DAYCLEARCOLD, 40, null, null, MusicDay3],
             [WeatherPresets.DUSKCLEAR, 20, null, null, null],
-            // SEVEN (31-34)
-            // RED MOON
-            [WeatherPresets.NIGHTSHINE, 60, 30, phaseNightSeven, MusicNight3],
+            [WeatherPresets.NIGHTSHINE, 70, 30, phaseNightSeven, MusicNight3],
+            // EIGHT (35-38)
             [WeatherPresets.DAWNREDMOON, 20, null, daybreak, MusicDay5],
             [WeatherPresets.DAYORANGESKY, 60, null, null, null],
             [WeatherPresets.DUSKFOGGY, 20, null, null, null],
-            // EIGHT (35-38)
             // BIG WAVE
             [WeatherPresets.NIGHTPURPLE, 80, 30, phaseNightEight, MusicNight4],  
             [WeatherPresets.DAWNBRIGHT, 20, null, daybreak, null],
@@ -791,10 +789,10 @@ package
         ];
         
         public const PHASES_CYCLE:Array = [
-            [WeatherPresets.DAWNGREY, 20, null, daybreak, null],
-            [WeatherPresets.DAYBLEAK, 40, null, null, null],
+            [WeatherPresets.DAWNREDMOON, 20, null, daybreak, null],
+            [WeatherPresets.DAYPASTEL, 40, null, null, null],
             [WeatherPresets.EVENINGORANGE, 20, null, null, null],
-            [WeatherPresets.NIGHTGREEN, 30, null, null, MusicNight5],
+            [WeatherPresets.NIGHTLONG, 30, null, null, MusicNight5],
             [null, 55, null, phaseNightCycle, null]
         ];
         
@@ -1027,7 +1025,7 @@ package
         
         public function trollWall(troll:FlxObject, wall:FlxObject):void{
             FlxObject.separate(troll, wall);
-            wall.hurt(5);
+            wall.hurt((troll as Troll).big ? 10 : 5);
         }
         
         public function trollShot(arrow:FlxObject, troll:Troll):void{

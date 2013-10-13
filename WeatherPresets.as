@@ -144,7 +144,7 @@ public class WeatherPresets extends Object{
 	}
 	public static const NIGHTSHINE:Object = {
 		'saturation': 0.5,
-		'darkness': 0.4,
+		'darkness': 0.35,
 		'sky': 0xFF000000,
 		'sunTint': 0xF9F8E6,
 		'haze': 0x00886AAA,
@@ -153,7 +153,7 @@ public class WeatherPresets extends Object{
 		'horizon': 0xFFAAAAFF,
 		'ambient': 0x00000000,
 		'timeOfDay': 0.9,
-		'contrast': 6.0,
+		'contrast': 4.0,
 		'darknessColor': 0x88222255
 	}
 	public static const EVENINGFOGGY:Object = {
@@ -179,7 +179,7 @@ public class WeatherPresets extends Object{
 		'fog': 0.0,
 		'wind': 0.2,
 		'horizon': 0xFF4D4658,
-		'ambient': 0xaa886AAA,
+		'ambient': 0x55886AAA,
 		'timeOfDay': 0.9,
 		'contrast': 3.0,
 		'darknessColor': 0x88990BBB

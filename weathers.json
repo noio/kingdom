@@ -561,7 +561,7 @@
   {
     "saturation": "0.8", 
     "contrast": "3.0", 
-    "ambient": "0xaa886AAA", 
+    "ambient": "0x55886AAA", 
     "sky": "0xFF57577D", 
     "horizon": "0xFF4D4658", 
     "haze": "0x88886AAA", 
@@ -624,7 +624,7 @@
   "NIGHTSHINE":
   {
     "saturation": "0.5", 
-    "contrast": "6.0", 
+    "contrast": "4.0", 
     "ambient": "0x00000000", 
     "sky": "0xFF000000", 
     "horizon": "0xFFAAAAFF", 
@@ -633,7 +633,7 @@
     "fog": "0.0", 
     "wind": "0.2", 
     "timeOfDay": "0.9", 
-    "darkness": "0.4", 
+    "darkness": "0.35", 
     "darknessColor": "0x88222255"
   }
   ,

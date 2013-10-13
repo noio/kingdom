@@ -220,7 +220,7 @@ package
                 if (c != null && c.alive && c.exists && Math.abs(c.x - x) < 96){
                     // FlxG.log("Shooting "+c+" at "+c.x+','+c.y);
                     play('shoot', true);
-                    shootSound.play(true)
+                    shootSound.play(false);
                     shootSound.proximity(x, y, playstate.player, FlxG.width);
 					// walk 1 pixel towards goal, just to get
 					// the facing right
