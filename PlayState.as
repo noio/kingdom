@@ -92,7 +92,7 @@ package
         
         
         //CONSTANTS
-        public static const CHEATS:Boolean = true;
+        public static const CHEATS:Boolean = false;
         public static const WEATHERCONTROLS:Boolean = false;
         
         public static const GAME_WIDTH:int = 3840;
@@ -724,9 +724,9 @@ package
         }
         
         public function phaseNightCycle():void{
-            var difficulty:Number = Math.sqrt(phase) / 4;
+            var difficulty:Number = day.value - 10;
             trollStats(30, 4, 45, 4, false, 8.0); // Strong 
-            spawnTrolls(int(8 * difficulty));
+            spawnTrolls(int(10 * difficulty));
         }
         
         public const PHASES:Array = [
