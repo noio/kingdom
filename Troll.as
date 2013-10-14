@@ -120,7 +120,7 @@ package
         
         public function retreat():void{
             retreating = true;
-            goal = (x < FlxG.worldBounds.width/2) ? 0 : FlxG.worldBounds.width;
+            goal = (x < playstate.player.x) ? 0 : FlxG.worldBounds.width;
             wait = false;
         }
 

@@ -627,13 +627,13 @@ package
                     setProgress('D6 A25 X2235 B2 P2 F1 H10 W010031 C2 S11 G0');
                 }
                 if (FlxG.keys.justPressed("SEVEN")){
-                    // setProgress('D7 A29 X2338 B2 P0 F4 H10 W030031 C3 S01 G3');   
+                    setProgress('D7 A29 X2146 B2 P5 F2 H8 W030031 C2 S00 G0');   
                 }
                 if (FlxG.keys.justPressed("EIGHT")){
-                    // setProgress('D3 X12 B2 P1 F1 H3 W010012 C0 G3');   
+                    setProgress('D8 A33 X2318 B3 P1 F6 H9 W040011 C2 S01 G2');   
                 }
                 if (FlxG.keys.justPressed("NINE")){
-                    // setProgress('D3 X12 B2 P1 F1 H3 W010012 C0 G3');   
+                    setProgress('D9 A37 X1467 B2 P1 F6 H7 W140041 C2 S02 G0');   
                 }
             }
         }
@@ -699,8 +699,8 @@ package
         // disadvantage to not having walls.
         // You will need them back in the next wave though.
         public function phaseNightEight():void{
-            trollStats(40, 2, 50, 3, false, 12.0)
-            spawnTrolls(10);
+            trollStats(40, 4, 50, 3, false, 12.0)
+            spawnTrolls(16);
         }
 
         // You need the highest walls here
@@ -769,29 +769,31 @@ package
             [WeatherPresets.DUSKCLEAR, 20, null, null, null],
             [WeatherPresets.NIGHTSHINE, 70, 30, phaseNightSeven, MusicNight3],
             // EIGHT (35-38)
-            [WeatherPresets.DAWNREDMOON, 20, null, daybreak, MusicDay5],
-            [WeatherPresets.DAYORANGESKY, 60, null, null, null],
+            [WeatherPresets.DAWNREDMOON, 40, null, daybreak, MusicDay5],
+            [WeatherPresets.DAYORANGESKY, 40, null, null, null],
             [WeatherPresets.DUSKFOGGY, 20, null, null, null],
             // BIG WAVE
             [WeatherPresets.NIGHTPURPLE, 80, 30, phaseNightEight, MusicNight4],  
-            [WeatherPresets.DAWNBRIGHT, 20, null, daybreak, null],
-            [WeatherPresets.DAYPASTEL, 70, null, null, MusicDay2],            
-            [WeatherPresets.DUSKTAN, 20, null, null, MusicNight4],
             // NINE (39-42)
+            [WeatherPresets.DAWNBRIGHT, 20, null, daybreak, null],
+            [WeatherPresets.DAYPASTEL, 75, null, null, MusicDay2],            
+            [WeatherPresets.DUSKTAN, 20, null, null, MusicNight4],
             // SINGLE TROLL, MASSIVE HEALTH
             [WeatherPresets.NIGHTREDMOON, 60, 30, phaseNightNine, null],
-            [WeatherPresets.DAWNBROWN, 20, null, daybreak, null],
-            [WeatherPresets.DAYDUSTY, 40, null, null, null],             //TODO
-            [WeatherPresets.DUSKRED, 20, null, null, MusicNight3],            //TODO
             // TEN (43)
+            [WeatherPresets.DAWNBROWN, 20, null, daybreak, null],
+            [WeatherPresets.DAYDUSTY, 40, null, null, null],
+            [WeatherPresets.DUSKRED, 20, null, null, MusicNight3],
             // EVERYTHING, YOU DIE HERE.
-            [WeatherPresets.NIGHTLONG, 60, 30, phaseNightTen, null]  //TODO
+            [WeatherPresets.NIGHTLONG, 60, 30, phaseNightTen, null],
+            [WeatherPresets.DAWNEARLY, 15, null, trollRetreat, null],
+
         ];
         
         public const PHASES_CYCLE:Array = [
             [WeatherPresets.DAWNREDMOON, 20, null, daybreak, null],
             [WeatherPresets.DAYPASTEL, 40, null, null, null],
-            [WeatherPresets.EVENINGORANGE, 20, null, null, null],
+            [WeatherPresets.DUSKTAN, 20, null, null, null],
             [WeatherPresets.NIGHTLONG, 30, null, null, MusicNight5],
             [null, 55, null, phaseNightCycle, null]
         ];
@@ -1057,7 +1059,8 @@ package
 
         public function crownStolen():void{
             gameover = true;
-            trollRetreat(2);
+            phasesPaused = true;
+            trollRetreat(0);
             FlxG.mouse.show();
             showText("No crown, no king. Game over.");
             showText("Click to continue.");

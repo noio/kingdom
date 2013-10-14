@@ -172,16 +172,16 @@ public class WeatherPresets extends Object{
 	}
 	public static const NIGHTPURPLE:Object = {
 		'saturation': 0.8,
-		'darkness': 0.35,
+		'darkness': 0.3,
 		'sky': 0xFF57577D,
 		'sunTint': 0xF9F8E6,
 		'haze': 0x88886AAA,
 		'fog': 0.0,
 		'wind': 0.2,
 		'horizon': 0xFF4D4658,
-		'ambient': 0x55886AAA,
+		'ambient': 0x33886AAA,
 		'timeOfDay': 0.9,
-		'contrast': 3.0,
+		'contrast': 2.0,
 		'darknessColor': 0x88990BBB
 	}
 	public static const EVENINGBLACK:Object = {
@@ -363,6 +363,20 @@ public class WeatherPresets extends Object{
 		'horizon': 0xFFEDC99A,
 		'ambient': 0x44F79A42,
 		'timeOfDay': 0.65,
+		'wind': 0.1,
+		'darknessColor': 0x88111114
+	}
+	public static const DAWNEARLY:Object = {
+		'saturation': 0.9,
+		'darkness': 0.2,
+		'sky': 0xFFC4AD99,
+		'haze': 0xAAf3f1e8,
+		'sunTint': 0xF9B340,
+		'fog': 0.5,
+		'contrast': 0.5,
+		'horizon': 0xFFCECECE,
+		'ambient': 0x22FF84DA,
+		'timeOfDay': 0.19,
 		'wind': 0.1,
 		'darknessColor': 0x88111114
 	}

@@ -19,7 +19,7 @@
         <object name="Troll" image="troll.png" width="32" height="32" imageWidth="32"/>
         <object name="Bunny" image="bunny.png" width="16" height="16" imageWidth="16"/>
         <object name="Treeline" image="treeline.png" width="96" height="160" />
-        <object name="Castle" image="castle_2_platform.png" width="128" height="96"/>
+        <object name="Castle" image="castle.png" width="128" height="96"/>
         <object name="Reed" image="reed.png" width="32" height="32" imageWidth="32"/>
         <object name="Hill" image="hill.png" width="160" height="32"/>
         <object name="Farmland" image="farmland.png" width="64" height="32" imageWidth="64" imageHeight="32"/>

@@ -94,10 +94,13 @@ x +visual switch first boss night with D9's night
 x +code walls don't repair
 x +testers don't get why horse is slow
 x +testers don't see night count
-+testers have too much money
+x +testers have too much money
 x +testers build castle too soon
 x +testers castle is too profitable
 x +testers shouldn't get tip (expansion) at night
 x +code mochi api
-+visual ease up on the fx
+x +visual ease up on the fx
 x +code music clip in night 4
+x night eight too dark
+x night eight is way easy
+x daypastel is too green

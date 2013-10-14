@@ -319,6 +319,22 @@
     "contrast": "0.5", 
     "darknessColor": "0x88111114"
   }
+  ,
+  "DAWNEARLY":
+  {
+    "saturation": "0.9", 
+    "darkness": "0.2", 
+    "sky": "0xFFC4AD99", 
+    "sunTint": "0xF9B340", 
+    "haze": "0xAAf3f1e8", 
+    "fog": "0.5", 
+    "wind": "0.1", 
+    "horizon": "0xFFCECECE", 
+    "ambient": "0x22FF84DA", 
+    "timeOfDay": "0.19", 
+    "contrast": "0.5", 
+    "darknessColor": "0x88111114"
+  }
   ,  "DAYSOFT":
   {
     "saturation": "0.7", 
@@ -560,8 +576,8 @@
   "NIGHTPURPLE":
   {
     "saturation": "0.8", 
-    "contrast": "3.0", 
-    "ambient": "0x55886AAA", 
+    "contrast": "2.0", 
+    "ambient": "0x33886AAA", 
     "sky": "0xFF57577D", 
     "horizon": "0xFF4D4658", 
     "haze": "0x88886AAA", 
@@ -569,7 +585,7 @@
     "fog": "0.0", 
     "wind": "0.2", 
     "timeOfDay": "0.9", 
-    "darkness": "0.35", 
+    "darkness": "0.3", 
     "darknessColor": "0x88990BBB"
   }
   ,
@@ -593,7 +609,7 @@
   {
     "saturation": "1.0", 
     "contrast": "1.0", 
-    "ambient": "0x77886A00", 
+    "ambient": "0x44886A00", 
     "sky": "0xFF3090F6", 
     "horizon": "0xFFEEEE88", 
     "haze": "0xDD657A8F", 
