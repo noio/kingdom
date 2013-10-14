@@ -60,22 +60,22 @@
     <Shop x="2044" y="68"/>
   </objects>
   <farmlands>
-    <Farmland x="1472" y="104"/>
+    <Farmland x="1488" y="104"/>
     <Farmland x="2152" y="104"/>
     <Farmland x="1064" y="104"/>
     <Farmland x="1152" y="104"/>
     <Farmland x="2300" y="104"/>
     <Farmland x="2604" y="104"/>
-    <Farmland x="1568" y="104"/>
+    <Farmland x="1584" y="104"/>
     <Farmland x="2368" y="104"/>
   </farmlands>
   <walls>
-    <Wall x="1412" y="80"/>
+    <Wall x="1436" y="80"/>
     <Wall x="2232" y="80"/>
     <Wall x="2688" y="80"/>
     <Wall x="996" y="80"/>
     <Wall x="1812" y="80"/>
-    <Wall x="1988" y="80"/>
+    <Wall x="1996" y="80"/>
   </walls>
   <props>
     <Treeline x="3744" y="0"/>
@@ -83,7 +83,7 @@
   </props>
   <lights>
     <Torch x="1292" y="100"/>
-    <Torch x="1452" y="100"/>
+    <Torch x="1468" y="100"/>
     <Torch x="1656" y="100"/>
     <Torch x="2136" y="100"/>
     <Torch x="2280" y="100"/>
@@ -112,7 +112,7 @@
     <Firefly x="3452" y="120"/>
     <Firefly x="3392" y="136"/>
     <Firefly x="3632" y="144"/>
-    <Torch x="1544" y="100"/>
+    <Torch x="1564" y="100"/>
     <Torch x="2216" y="100"/>
     <Torch x="2596" y="100"/>
     <Torch x="2672" y="100"/>

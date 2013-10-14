@@ -176,10 +176,10 @@ package org.flixel
 				return Object;
 			
 			//First, look for a null entry where we can add the object.
-			var i:uint = 0;
+			var i:int = 0;
 			var l:uint = members.length;
-			while(i < l)
-			{
+			for (i = 0; i < l; i++){
+			// while(i < l){
 				if(members[i] == null)
 				{
 					members[i] = Object;
@@ -187,7 +187,7 @@ package org.flixel
 						length = i+1;
 					return Object;
 				}
-				i++;
+				// i++;
 			}
 			
 			//Failing that, expand the array (if we can) and add the object.

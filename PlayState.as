@@ -347,10 +347,12 @@ package
             var collider:FlxSprite = new FlxSprite(0,132.2).makeGraphic(FlxG.worldBounds.width,32,0x00FF00FF)
             collider.immovable = true;
             level.add(collider);
-            collider = new FlxSprite(0,0).makeGraphic(16,160,0x00FF00FF);
+
+            collider = new FlxSprite(0,0).makeGraphic(8,200,0x00FF00FF);
             collider.immovable = true;
             level.add(collider);
-            collider = new FlxSprite(FlxG.worldBounds.width - 16,0).makeGraphic(16,160,0x00FF00FF);
+
+            collider = new FlxSprite(FlxG.worldBounds.width - 8,0).makeGraphic(8,200,0x00FF00FF);
             collider.immovable = true;
             level.add(collider);
                         
@@ -869,14 +871,13 @@ package
 
             while(amount){
                 amount -= 2;
-                var o:Number = FlxG.random()*12;
             
                 var troll:Troll = (trolls.recycle(Troll) as Troll);
-                troll.reset(16 + o, groundHeight - 40)
+                troll.reset(64, groundHeight - 40)
                 trollsToSpawn.push(troll);
                 
                 troll = (trolls.recycle(Troll) as Troll);
-                troll.reset(GAME_WIDTH - 16 - o - troll.width, groundHeight - 40);
+                troll.reset(GAME_WIDTH - 64, groundHeight - 40);
                 trollsToSpawn.push(troll);
 
                 updateTrollSpawn();    
@@ -1007,6 +1008,7 @@ package
             retreatDelay = delay;
             
             if (retreatDelay <= 0){
+                trollsToSpawn.splice(0);
                 trolls.callAll("retreat");
             }
         }

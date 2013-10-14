@@ -45,10 +45,12 @@ package
             hasCoin = false;
             wait = true;
             visible = false;
+            velocity.x = velocity.y = 0;
             if (! big == playstate.trollBig){
                 big = playstate.trollBig;
                 loadAnims();
             }
+            X -= width / 2;
             super.reset(X - width / 2, Y);
             health = playstate.trollHealth;
 			maxSpeed = playstate.trollMaxSpeed;
@@ -127,10 +129,12 @@ package
         public function go():void{
             wait = false;
             visible = true;
+            goal = playstate.player.x;
         }
         
         override public function update():void {
             if (wait){
+                acceleration.x = 0;
                 velocity.x = 0;
                 return;
             }
@@ -141,7 +145,7 @@ package
             t += FlxG.elapsed;
             if (!hasCoin && t > 1.8){
                 if (retreating || confuseCooldown < 0){
-                    goal = (x < FlxG.worldBounds.width/2) ? 0 : FlxG.worldBounds.width;
+                    goal = (x < playstate.player.x) ? 0 : FlxG.worldBounds.width;
                     confuseCooldown = confusion + Math.random() * 2 * confusion;
                 } else {
                     goal = playstate.player.x;
@@ -155,7 +159,10 @@ package
             }
             if (y > 200){
                 // throw new Error("TROLL FELL OFF :(");
-                FlxG.log("TROLL FELL")
+                FlxG.log("TROLL FELL " + x + " , " + y)
+                FlxG.log("Retreating: " + retreating);
+                FlxG.log("Big: " + big);
+                FlxG.log("Wait: " + wait);
                 kill();
             }
             

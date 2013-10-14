@@ -95,7 +95,7 @@ public class WeatherPresets extends Object{
 		'fog': 0.0,
 		'wind': 0.3,
 		'horizon': 0xFFEEEE88,
-		'ambient': 0x77886A00,
+		'ambient': 0x44886A00,
 		'timeOfDay': 0.55,
 		'contrast': 1.0,
 		'darknessColor': 0x88000BBB
