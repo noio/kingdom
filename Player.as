@@ -94,7 +94,7 @@ package
             // If the player has coins, lose one and return.
             if (coins > 0){
                 var c:Coin = (playstate.coins.recycle(Coin) as Coin);
-                c.drop(this, null);
+                c.drop(this, troll, true);
                 c.justThrown = true;
                 FlxG.play(StolenSound).proximity(x, y, this, FlxG.width);
                 changeCoins(-1);

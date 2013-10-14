@@ -507,7 +507,7 @@ public class WeatherPresets extends Object{
 		'darknessColor': 0x88111114
 	}
 	public static const DAYMONOCHROME:Object = {
-		'saturation': 0.15,
+		'saturation': 0.25,
 		'darkness': 0.0,
 		'sky': 0xFF80A2C8,
 		'haze': 0xFFf3f1e8,

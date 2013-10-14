@@ -73,7 +73,7 @@ x +code big trolls hitbox
 x +balance night 2 (green) too jumpy
 x +code castle coin indicator too high
 
-+code cycle phase consists of final night, DAYPASTEL
+x +code cycle phase consists of final night, DAYPASTEL
 
 x +code fix jumping height
 x +code indicate low money
@@ -98,6 +98,6 @@ x +testers don't see night count
 x +testers build castle too soon
 x +testers castle is too profitable
 x +testers shouldn't get tip (expansion) at night
-+code mochi api
+x +code mochi api
 +visual ease up on the fx
-+code music clip in night 4
+x +code music clip in night 4

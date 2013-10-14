@@ -400,7 +400,7 @@
   ,
   "DAYMONOCHROME":
   {
-    "saturation": "0.15", 
+    "saturation": "0.25", 
     "darkness": "0.0", 
     "sky": "0xFF80A2C8", 
     "horizon": "0xFFA6C9ED", 

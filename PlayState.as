@@ -615,19 +615,19 @@ package
                     // setProgress('D2 A7 X1000 B2 P0 F1 H2 W000011 C0 G4 S00');
                 }
                 if (FlxG.keys.justPressed("THREE")){
-                    setProgress('D3 A12 X1900 B4 P0 F1 H2 W000010 C2 S02 G0');
+                    setProgress('D3 A12 X1713 B2 P0 F2 H4 W010011 C1 S01 G3');
                 }
                 if (FlxG.keys.justPressed("FOUR")){
-                    setProgress('D4 A17 X2099 B2 P1 F4 H5 W030031 C2 S01 G2');   
+                    setProgress('D4 A17 X1932 B2 P1 F3 H6 W220021 C1 S02 G7');   
                 }
                 if (FlxG.keys.justPressed("FIVE")){
-                    setProgress('D5 A21 X2123 B2 P2 F3 H8 W010031 C2 S00 G0');   
+                    setProgress('D5 A21 X1899 B4 P1 F3 H6 W010031 C2 S00 G0');   
                 }
                 if (FlxG.keys.justPressed("SIX")){
-                    setProgress('D6 A25 X1973 B4 P1 F3 H8 W020001 C2 S00 G4');   
+                    setProgress('D6 A25 X2235 B2 P2 F1 H10 W010031 C2 S11 G0');
                 }
                 if (FlxG.keys.justPressed("SEVEN")){
-                    setProgress('D7 A29 X2338 B2 P0 F4 H10 W030031 C3 S01 G3');   
+                    // setProgress('D7 A29 X2338 B2 P0 F4 H10 W030031 C3 S01 G3');   
                 }
                 if (FlxG.keys.justPressed("EIGHT")){
                     // setProgress('D3 X12 B2 P1 F1 H3 W010012 C0 G3');   
@@ -751,8 +751,8 @@ package
             // FOUR (19-22)
             [WeatherPresets.DAWNBLEAK, 20, null, daybreak, null],
             [WeatherPresets.DAYSOFT, 40, null, null, null],
-            [WeatherPresets.EVENINGMONOTONE, 20, null, null, MusicNight5],
-            [WeatherPresets.NIGHTSUPERDARK, 60, 30, phaseNightFour, null],
+            [WeatherPresets.EVENINGMONOTONE, 30, null, null, MusicNight5],
+            [WeatherPresets.NIGHTSUPERDARK, 65, 30, phaseNightFour, null],
             // FIVE (23-26)
             [WeatherPresets.DAWNLIGHTPINK, 20, null, daybreak, MusicDay3],
             [WeatherPresets.DAYBLEAK, 55, null, null, null],
@@ -936,7 +936,6 @@ package
             // 'N1 X1 B2 P0 F0 H0 W000011 C0 G7'
             progressAll();
             FlxG.flash(0xFFFFFFFF, 3);
-
             FlxG.log("Skip to " + s);
 
             var newDay:int = parseInt(s.match(/D(\d+)/)[1]);
@@ -995,6 +994,9 @@ package
             phase = ph - 1;
             day.setValue(newDay - 1);
             nextPhase();
+
+            trolls.callAll("kill");
+            gibs.callAll("kill");
 
         }
         

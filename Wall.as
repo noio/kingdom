@@ -51,7 +51,7 @@ package
         }
 
         public function buildTo(s:int, instant:Boolean=false):void{
-            if (s < stage) return;
+            if (!instant && s < stage) return;
             building = true;
             stage = s;
             heightToBuild = HEIGHT[stage];

@@ -11,7 +11,7 @@ package
         
         [Embed(source='/assets/gfx/farmland.png')]    private var FarmlandImg:Class;
 
-        public static const WORK_COOLDOWN:Number = 10;
+        public static const WORK_COOLDOWN:Number = 8;
 
         private var t:Number = 0;
         

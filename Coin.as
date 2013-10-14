@@ -30,11 +30,16 @@ package
             elasticity = 0.5;
         }
                 
-        public function drop(from:FlxSprite, owner:FlxObject=null):Coin{
+        public function drop(from:FlxSprite, owner:FlxObject=null, far:Boolean=false):Coin{
             reset(from.x + from.width/2 - 5, Math.max(40, from.y - 10));
             lifespan = TOTAL_LIFESPAN;
-            velocity.x = FlxG.random()*60 - 30;
-            velocity.y = -200;
+            if (far){
+                velocity.x = FlxG.random()*140 - 70;
+                velocity.y = -180;
+            } else {
+                velocity.x = FlxG.random()*60 - 30;
+                velocity.y = -180;
+            }
             called = false;
 		    this.owner = owner;
 			if (owner != null && owner is Citizen){
@@ -45,7 +50,8 @@ package
         
         override public function update():void{
             if (!called && lifespan <= TOTAL_LIFESPAN - OWNER_LIFESPAN / 2) {
-                var cit:Citizen = owner as Citizen;    
+                justThrown = false;
+                var cit:Citizen = owner as Citizen;
                 if (cit){
                     called = true;
                     justThrown = false;
