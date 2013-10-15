@@ -135,9 +135,11 @@ package
         public var reachedVillage:Boolean        = false;
         public var recruitedCitizen:Boolean      = false;
         public var boughtItem:Boolean            = false;
-        public var boughtItemAdvice:Boolean      = false;
+        public var buyBowAdvice:Boolean      = false;
+        public var buyScytheAdvice:Boolean      = false;
         public var expandedKingdomAdvice:Boolean = false;
         public var horseAdvice:Boolean           = false;
+        public var outOfGoldAdvice:Boolean = false;
         public var savedProgress:String          = null;
         public var restoreProgress:String        = null;
         
@@ -244,7 +246,8 @@ package
             reachedVillage = true;
             recruitedCitizen = true;
             boughtItem = true;
-            boughtItemAdvice = true
+            buyBowAdvice = true;
+            buyScytheAdvice = true;
             expandedKingdomAdvice = true;
         }
                
@@ -293,10 +296,10 @@ package
             
             add(text = new FlxText(10, 138, FlxG.width, "TEXT"));
             // FlxG.log(font)
-            text.setFormat("04b03", 8, 0xFFFFFFFF, "left", 0xAA333333);
+            text.setFormat("04b03", 8, 0xFFFFFFFF, "left", 0xCC333333);
             text.visible = false;
             text.scrollFactor.x = 0;
-            text.alpha = 0.7;
+            text.alpha = 1.0;
 
             add(centerText = new FlxText(0, FlxG.height/2 - 32, FlxG.width, "TEXT"));
 
@@ -508,11 +511,18 @@ package
                 }
             }
             
-            if (recruitedCitizen && !boughtItem && !boughtItemAdvice){
-                boughtItemAdvice = true;
-                showText("Buy them some bows or scythes.");
-                panTo(shops.members[1], 5.0);
+            if (recruitedCitizen && !boughtItem && !buyBowAdvice){
+                buyBowAdvice = true;
+                showText("Buy them bows to defend and hunt for you.");
+                panTo(shops.members[1], 7.5);
             }
+
+            if (buyBowAdvice && !buyScytheAdvice && cameraTarget.target == player){
+                buyScytheAdvice = true;
+                showText("Buy them scythes to build and farm for you.");
+                panTo(shops.members[0], 7.5);   
+            }
+
             
             if (boughtItem && !expandedKingdomAdvice && characters.length >= 4 
                 && weather.timeOfDay > 0.3 && weather.timeOfDay < 0.6){
@@ -641,8 +651,8 @@ package
         }
           
         public function phaseFirst():void{
-            beggars.add( new Citizen (kingdomRight+300, 0)); 
-            beggars.add( new Citizen (kingdomRight+300, 0));
+            beggars.add( new Citizen (kingdomRight+580, 0)); 
+            beggars.add( new Citizen (kingdomRight+600, 0));
             minBeggars = 2;
         }
         public function phaseBeforeNightOne():void{
@@ -652,7 +662,11 @@ package
         public function phaseNightOne():void{
             trollStats(24, 1, 20, 999999, false, 16.0); // Nojump
             spawnTrolls(2);
-            panTo(trolls.members[0]);
+            if (player.x < GAME_WIDTH / 2){
+                panTo(trolls.members[0]);
+            } else {
+                panTo(trolls.members[1]);
+            }
             showText("They will noodle your stuff away.")
         }
         

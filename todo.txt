@@ -104,4 +104,10 @@ x +code music clip in night 4
 x night eight too dark
 x night eight is way easy
 x daypastel is too green
-link to site
+x Ok, totaal geen idee hoe dat bouwen werkt en als shit in de stijgers staat dan werkt het niet
+x en je zet dingen steeds per ongeluk in de stijgers
+x en wat die zeisen doen snap ik ook niet
+x firstly, als je naar de rand loopt stopt de camera wel maar de koning niet, die loopt van het scherm af gewoon door
+x de uitleg tekst hangt boven te drukke achtergrond om te lezen
+x misschien in de lucht of een fijner font (halve pixels ipv hele pixels zeg maar)
+x als je bij de eerste nacht rechts staat met je koning wordt je aangevallen terwijl die lange pan naar links gedaan wordt

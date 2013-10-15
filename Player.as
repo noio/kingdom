@@ -59,8 +59,6 @@ package
             
             playstate = (FlxG.state as PlayState);
 
-
-
             addAnimation('walk_slow',[0,1,2,3,4,5,6,7],10,true);
             addAnimation('walk_fast',[0,1,2,3,4,5,6,7],15,true);
             addAnimation('stand',[8],10,true);
@@ -225,6 +223,14 @@ package
                 checkSelectable(playstate.shops);
                 checkSelectable(playstate.walls);
             }
+
+            // CAP WALKING AT LEVEL ENDS
+            if (x < 0){
+                velocity.x = Math.max(velocity.x, 0);
+            } else if (x + width > PlayState.GAME_WIDTH) {
+                velocity.x = Math.min(velocity.x, 0);
+            }
+
         }
         
         private function checkSelectable(group:FlxGroup):void{
@@ -247,6 +253,7 @@ package
         }
         
         private function deselect(building:FlxSprite):void{
+            selectedBuilding.color = 0xFFFFFFFF;
             selectedBuilding = null;
             floatCoin.visible = false;
         }

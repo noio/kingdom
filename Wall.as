@@ -68,7 +68,7 @@ package
                 heightToBuild = 1;
                 work(null);
             }
-            flicker();
+            // flicker();
         }
         
         public function work(citizen:Citizen=null):void{

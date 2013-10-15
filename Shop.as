@@ -76,7 +76,7 @@ package
         public function build():void{
             (FlxG.state as PlayState).boughtItem = true;
             supply += 1;
-            flicker();
+            flicker(0.3);
             updateAppearance();
         }
         

@@ -96,7 +96,7 @@ package
                 t = 0;
                 Utils.explode(this, playstate.gibs, 0.4);
                 morph(stage + 1);
-                flicker();
+                // flicker();
             }
             
         }

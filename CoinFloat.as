@@ -23,6 +23,8 @@ package
             acceleration.y = 0;
             x = above.x + above.width/2 - width/2;
             y = Math.max(above.y - height - 4, 40);
+            above.color = 0xCCCC00;
+            // above.flicker();
         }
         
     }
