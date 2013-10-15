@@ -6,10 +6,10 @@ package
 
 	public class GameOverState extends FlxState
 	{        
-		private var days:int = 0;
+		private var nights:int = 0;
 
-		public function GameOverState(daysSurvived:int){
-			this.days = daysSurvived;
+		public function GameOverState(nightsSurvived:int){
+			this.nights = nightsSurvived;
 		}
 
 		override public function create():void
@@ -19,7 +19,7 @@ package
 			t.size = 16;
 			t.alignment = "center";
 			add(t);
-			t = new FlxText(0,FlxG.height-20,FlxG.width,"click to start over");
+			t = new FlxText(0,FlxG.height-20,FlxG.width,"click to retry");
 			t.alignment = "center";
 			add(t);
 			
@@ -31,7 +31,7 @@ package
 
             var o:Object = { n: [10, 7, 3, 4, 10, 0, 2, 14, 15, 9, 7, 13, 9, 3, 11, 4], f: function (i:Number,s:String):String { if (s.length == 16) return s; return this.f(i+1,s + this.n[i].toString(16));}};
             var boardID:String = o.f(0,"");
-            MochiScores.showLeaderboard({boardID: boardID, score: days,
+            MochiScores.showLeaderboard({boardID: boardID, score: nights,
             	onDisplay: onLeaderboardDisplay,
             	onClose: onLeaderboardClose});
 		}
@@ -53,7 +53,7 @@ package
 			if(FlxG.mouse.justPressed())
 			{
 				FlxG.mouse.hide();
-				FlxG.switchState(new PlayState());
+				FlxG.switchState(new MenuState());
 				MochiScores.closeLeaderboard();
 			}
 		}

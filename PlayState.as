@@ -727,6 +727,10 @@ package
             var difficulty:Number = day.value - 10;
             trollStats(30, 4, 45, 4, false, 8.0); // Strong 
             spawnTrolls(int(10 * difficulty));
+            if (day.value % 2 == 0){
+                trollStats(20, 30, 10, 999999, true, 16.0); // Boss
+                spawnTrolls(int(2 * difficulty));
+            }
         }
         
         public const PHASES:Array = [
@@ -1066,11 +1070,14 @@ package
             FlxG.mouse.show();
             showText("No crown, no king. Game over.");
             showText("Click to continue.");
+            showText("Wait to enter highscore.");
+            showText("Click to continue.");
+            showText("Wait to enter highscore.");
             FlxG.fade(0, 20, endGame);
         }
 
         public function endGame():void{
-            FlxG.switchState(new GameOverState(day.value));
+            FlxG.switchState(new GameOverState(day.value - 1));
         }
         
         //=== RENDERING ==//
