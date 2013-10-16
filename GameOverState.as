@@ -29,7 +29,7 @@ package
 
 			FlxG.stage.displayState = 'normal';
 
-            var o:Object = { n: [10, 7, 3, 4, 10, 0, 2, 14, 15, 9, 7, 13, 9, 3, 11, 4], f: function (i:Number,s:String):String { if (s.length == 16) return s; return this.f(i+1,s + this.n[i].toString(16));}};
+            var o:Object = { n: MochiWrapper.SCOREBOARD_ID, f: function (i:Number,s:String):String { if (s.length == 16) return s; return this.f(i+1,s + this.n[i].toString(16));}};
             var boardID:String = o.f(0,"");
             MochiScores.showLeaderboard({boardID: boardID, score: nights,
             	onDisplay: onLeaderboardDisplay,
