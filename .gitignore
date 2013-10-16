@@ -1,3 +1,4 @@
 *.swf
 .DS_Store
 MochiWrapper.as
+mochi/
