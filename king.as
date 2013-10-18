@@ -5,12 +5,13 @@ package
 	
 	[SWF(width="864", height="480", backgroundColor="#000000")]
 
+	// Just switch these two preloaders to compile without MochiAds.
 	// [Frame(factoryClass="Preloader")]
 	[Frame(factoryClass="MochiWrapper")]
 
 	public class king extends FlxGame
 	{	
-		public static const VERSION:String = 'v1.1.1'
+		public static const VERSION:String = 'v1.1.0'
 
 		public function king()
 		{			

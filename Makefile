@@ -28,12 +28,12 @@ else
   export EC = @
 endif
 
-
 #
 #  targets
 #
 
 all:
+	echo Switch the two preloaders in king.as to compile without MochiAds support.
 	# ./convert_sounds.sh
 	python convert_tiles.py
 	python convert_weather.py

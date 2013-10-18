@@ -110,7 +110,7 @@ public class WeatherPresets extends Object{
 		'contrast': 0.8,
 		'horizon': 0xFFEDC99A,
 		'ambient': 0x44F79A42,
-		'timeOfDay': 0.65,
+		'timeOfDay': 0.651,
 		'wind': 0.1,
 		'darknessColor': 0x88111114
 	}
@@ -362,7 +362,7 @@ public class WeatherPresets extends Object{
 		'contrast': 0.8,
 		'horizon': 0xFFEDC99A,
 		'ambient': 0x44F79A42,
-		'timeOfDay': 0.65,
+		'timeOfDay': 0.651,
 		'wind': 0.1,
 		'darknessColor': 0x88111114
 	}
@@ -432,7 +432,7 @@ public class WeatherPresets extends Object{
 		'contrast': 0.45,
 		'horizon': 0xFFC69875,
 		'ambient': 0x22360A00,
-		'timeOfDay': 0.65,
+		'timeOfDay': 0.651,
 		'wind': 0.1,
 		'darknessColor': 0x88111114
 	}
@@ -586,7 +586,7 @@ public class WeatherPresets extends Object{
 		'contrast': 0.8,
 		'horizon': 0xFFEDC99A,
 		'ambient': 0x44F79A42,
-		'timeOfDay': 0.65,
+		'timeOfDay': 0.651,
 		'wind': 0.1,
 		'darknessColor': 0x88111114
 	}
@@ -628,7 +628,7 @@ public class WeatherPresets extends Object{
 		'wind': 0.2,
 		'horizon': 0xFFf2d407,
 		'ambient': 0x55f5db04,
-		'timeOfDay': 0.65,
+		'timeOfDay': 0.651,
 		'contrast': 0.1,
 		'darknessColor': 0x88000000
 	}
