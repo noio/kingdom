@@ -9,7 +9,8 @@ package
 	[Frame(factoryClass="MochiWrapper")]
 
 	public class king extends FlxGame
-	{
+	{	
+		public static const VERSION:String = 'v1.1.1'
 
 		public function king()
 		{			

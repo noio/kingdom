@@ -20,6 +20,12 @@ package
 			noioHighlight.width = 30;
 			noioHighlight.visible = false;
 			pezHighlight.visible = false;
+
+			var t:FlxText = new FlxText(0,0,100,king.VERSION);
+			t.alignment = "left";
+			t.alpha = 0.24
+			add(t);
+
 			FlxG.mouse.show();
 		}
 

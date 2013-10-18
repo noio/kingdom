@@ -38,6 +38,7 @@ package
             acceleration.y = 900;
             loadAnims();
             playstate = (FlxG.state as PlayState);
+            // allowCollisions = UP|DOWN;
         }
         
         override public function reset(X:Number,Y:Number):void{

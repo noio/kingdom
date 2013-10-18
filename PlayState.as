@@ -60,6 +60,7 @@ package
         public var beggars:FlxGroup;
         public var characters:FlxGroup;
         public var trolls:FlxGroup;
+        // public var trollsNoCollide:FlxGroup;
         public var gibs:FlxGroup;
         public var indicators:FlxGroup;
         
@@ -92,7 +93,7 @@ package
         
         
         //CONSTANTS
-        public static const CHEATS:Boolean = false;
+        public static const CHEATS:Boolean = true;
         public static const WEATHERCONTROLS:Boolean = false;
         
         public static const GAME_WIDTH:int = 3840;
@@ -424,6 +425,7 @@ package
             FlxG.collide(level, coins);
             FlxG.collide(level, trolls);
             FlxG.collide(level, gibs);
+            FlxG.collide(trolls, trolls);
             FlxG.overlap(trolls, walls, this.trollWall);
             FlxG.overlap(arrows, trolls, this.trollShot);
             FlxG.overlap(arrows, bunnies, this.bunnyShot);

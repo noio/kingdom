@@ -111,3 +111,10 @@ x firstly, als je naar de rand loopt stopt de camera wel maar de koning niet, di
 x de uitleg tekst hangt boven te drukke achtergrond om te lezen
 x misschien in de lucht of een fijner font (halve pixels ipv hele pixels zeg maar)
 x als je bij de eerste nacht rechts staat met je koning wordt je aangevallen terwijl die lange pan naar links gedaan wordt
+
+highscore screen is ugly
+goal is not clear
+show coin count more clearly
+make trolls jump on each other's heads
+night before day 8 too cray fx
+higher jumps in cyclic phase
