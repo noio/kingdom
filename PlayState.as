@@ -60,7 +60,7 @@ package
         public var beggars:FlxGroup;
         public var characters:FlxGroup;
         public var trolls:FlxGroup;
-        // public var trollsNoCollide:FlxGroup;
+        public var trollsNoCollide:FlxGroup;
         public var gibs:FlxGroup;
         public var indicators:FlxGroup;
         
@@ -178,6 +178,7 @@ package
             if (CHEATS){
                 add(minimap = new Minimap(0, FlxG.height - 1 ,FlxG.width, 1));
                 minimap.add(trolls, 0xFF87B587);
+                minimap.add(trollsNoCollide, 0xFF0000FF);
                 minimap.add(player, 0xff765DB3);
                 minimap.add(beggars, 0xFF7D6841);
                 minimap.add(characters, 0xFFA281F8);
@@ -279,6 +280,7 @@ package
             add(characters = new FlxGroup());            
             
             add(trolls = new FlxGroup());
+            add(trollsNoCollide = new FlxGroup());
             add(walls = new FlxGroup());
             add(coins = new FlxGroup(100));
             add(gibs = new FlxGroup(200));
@@ -424,19 +426,26 @@ package
 
             FlxG.collide(level, coins);
             FlxG.collide(level, trolls);
+            FlxG.collide(level, trollsNoCollide);
             FlxG.collide(level, gibs);
             FlxG.collide(trolls, trolls);
             FlxG.overlap(trolls, walls, this.trollWall);
+            FlxG.overlap(trollsNoCollide, walls, this.trollWall);
             FlxG.overlap(arrows, trolls, this.trollShot);
+            FlxG.overlap(arrows, trollsNoCollide, this.trollShot);
             FlxG.overlap(arrows, bunnies, this.bunnyShot);
             FlxG.overlap(coins, characters,this.pickUpCoin);
             FlxG.overlap(coins, player,this.pickUpCoin);
             FlxG.overlap(coins, beggars, this.pickUpCoin);
             FlxG.overlap(coins, trolls, this.pickUpCoin);
+            FlxG.overlap(coins, trollsNoCollide, this.pickUpCoin);
             FlxG.overlap(trolls, characters, this.trollHit);
+            FlxG.overlap(trollsNoCollide, characters, this.trollHit);
             FlxG.overlap(trolls, beggars, this.trollHit);
+            FlxG.overlap(trollsNoCollide, beggars, this.trollHit);
             if (!(CHEATS && untouchable)){
                 FlxG.overlap(trolls, player, this.trollHit);
+                FlxG.overlap(trollsNoCollide, player, this.trollHit);
             }
 			FlxG.overlap(characters, player, this.giveTaxes);
             // Update weather
@@ -476,6 +485,7 @@ package
                 retreatDelay -= FlxG.elapsed
                 if (retreatDelay <= 0){
                     trolls.callAll("retreat");
+                    trollsNoCollide.callAll("retreat");
                 }
             }
             
@@ -1019,6 +1029,7 @@ package
             nextPhase();
 
             trolls.callAll("kill");
+            trollsNoCollide.callAll("kill");
             gibs.callAll("kill");
 
         }
@@ -1030,6 +1041,7 @@ package
             if (retreatDelay <= 0){
                 trollsToSpawn.splice(0);
                 trolls.callAll("retreat");
+                trollsNoCollide.callAll("retreat");
             }
         }
         

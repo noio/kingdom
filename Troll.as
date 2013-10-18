@@ -61,6 +61,10 @@ package
             confusion = playstate.trollConfusion;
             confuseCooldown = confusion + Math.random() * 2 * confusion;
             t = 1;
+
+            if (playstate.trollsNoCollide.remove(this)){
+                playstate.trolls.add(this);
+            }
         }
 
         private function loadAnims():void{
@@ -116,21 +120,33 @@ package
                 Utils.explode(this, playstate.gibs, 1.0);
                 if (hasCoin) {
                     (playstate.coins.recycle(Coin) as Coin).drop(this);
-                }    
+                } 
                 kill();
             }
+        }
+
+        override public function kill():void{
+            playstate.trollsNoCollide.remove(this);
+            playstate.trolls.add(this);
+            super.kill();
         }
         
         public function retreat():void{
             retreating = true;
             goal = (x < playstate.player.x) ? 0 : FlxG.worldBounds.width;
             wait = false;
+            playstate.trolls.remove(this);
+            playstate.trollsNoCollide.add(this);
         }
 
         public function go():void{
             wait = false;
             visible = true;
             goal = playstate.player.x;
+            if (big) {
+                playstate.trolls.remove(this);
+                playstate.trollsNoCollide.add(this);
+            }
         }
         
         override public function update():void {
