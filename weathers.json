@@ -188,7 +188,7 @@
     "wind": "0.1", 
     "horizon": "0xFFEDC99A", 
     "ambient": "0x44F79A42", 
-    "timeOfDay": "0.65", 
+    "timeOfDay": "0.651", 
     "contrast": "0.8", 
     "darknessColor": "0x88111114"
   }
@@ -268,7 +268,7 @@
     "wind": "0.1", 
     "horizon": "0xFFEDC99A", 
     "ambient": "0x44F79A42", 
-    "timeOfDay": "0.65", 
+    "timeOfDay": "0.651", 
     "contrast": "0.8", 
     "darknessColor": "0x88111114"
   }
@@ -441,7 +441,7 @@
     "wind": "0.1", 
     "horizon": "0xFFEDC99A", 
     "ambient": "0x44F79A42", 
-    "timeOfDay": "0.65", 
+    "timeOfDay": "0.651", 
     "contrast": "0.8", 
     "darknessColor": "0x88111114"
   }
@@ -504,7 +504,7 @@
     "wind": "0.1", 
     "horizon": "0xFFC69875", 
     "ambient": "0x22360A00", 
-    "timeOfDay": "0.65", 
+    "timeOfDay": "0.651", 
     "contrast": "0.45", 
     "darknessColor": "0x88111114"
   }
@@ -576,7 +576,7 @@
   "NIGHTPURPLE":
   {
     "saturation": "0.8", 
-    "contrast": "2.0", 
+    "contrast": "1.4", 
     "ambient": "0x33886AAA", 
     "sky": "0xFF57577D", 
     "horizon": "0xFF4D4658", 
@@ -696,7 +696,7 @@
     "sunTint": "0xf27612", 
     "fog": "0.2", 
     "wind": "0.2", 
-    "timeOfDay": "0.65", 
+    "timeOfDay": "0.651", 
     "darkness": "0.2", 
     "darknessColor": "0x88000000"
   }

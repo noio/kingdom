@@ -181,7 +181,7 @@ public class WeatherPresets extends Object{
 		'horizon': 0xFF4D4658,
 		'ambient': 0x33886AAA,
 		'timeOfDay': 0.9,
-		'contrast': 2.0,
+		'contrast': 1.4,
 		'darknessColor': 0x88990BBB
 	}
 	public static const EVENINGBLACK:Object = {

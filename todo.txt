@@ -115,6 +115,6 @@ x als je bij de eerste nacht rechts staat met je koning wordt je aangevallen ter
 highscore screen is ugly
 goal is not clear
 show coin count more clearly
-make trolls jump on each other's heads
-night before day 8 too cray fx
-higher jumps in cyclic phase
+x make trolls jump on each other's heads
+x night before day 8 too cray fx
+x higher jumps in cyclic phase
