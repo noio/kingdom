@@ -93,7 +93,7 @@ package
         
         
         //CONSTANTS
-        public static const CHEATS:Boolean = true;
+        public static const CHEATS:Boolean = false;
         public static const WEATHERCONTROLS:Boolean = false;
         
         public static const GAME_WIDTH:int = 3840;
