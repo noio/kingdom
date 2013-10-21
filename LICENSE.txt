@@ -1,20 +1,30 @@
-The MIT License (MIT)
 
 Copyright (c) 2013 Thomas "noio" van den Berg
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
+Permission is granted to any person obtaining a copy of this code and the
+accompanying assets, and the software resulting from compilation (together
+the "Software") to copy, modify, distribute and publish the Software under 
+the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+ * The Software shall not be used for commercial purposes, including sale
+   of the Software, publication of the Software with advertisements, or 
+   publication of the Software with the possibility of in-game purchases.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * The Software may not be published for mobile devices, including Apple
+   iPhone, iPad and iPod, Windows Phones, or Android phones. Publication
+   on mobile platforms in a modified form shall only be done with 
+   permission from the copyright holder.
+
+ * For any reuse or distribution, this licence shall be included in all
+   copies or substantial portions of the Software.
+
+Note from the author: 
+
+The reason I included this license is not to limit anyone in their option
+to learn from, modify, and show off this code, but only to prevent people
+making a quick buck by compiling the game for mobile devices and selling
+it. I'd also hate to see clones of the Flash version with ads plastered
+all over them. If you make an entirely new game out of the assets here, 
+I'm fine with that too, and you can go ahead and make as much money off 
+of that as you want. So please, go ahead and download the code, mess with 
+it, and show the results to all your friends (and me! :). 

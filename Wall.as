@@ -82,12 +82,12 @@ package
                     scaffold.kill();
                     scaffold = null;
                 }
-                updateAppearance();
             } else {
                 if (health < HEALTH[stage]){
                     health += Math.min(WORK_HEAL_AMOUNT, HEALTH[stage] - health);
                 }
             }
+            updateAppearance();
         }
 
         override public function hurt(Damage:Number):void{
@@ -102,11 +102,12 @@ package
                 stage = 0;
                 health = HEALTH[stage];
             }
+            health = Math.max(health, HEALTH[0]);
             updateAppearance();
         }
         
         public function needsWork():Boolean{
-            return (building || health < HEALTH[stage]);
+            return (building || (health < HEALTH[stage] & t < HURT_COOLDOWN));
         }
         
         public function canBuild():Boolean{

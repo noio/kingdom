@@ -103,6 +103,8 @@ package
         public static const MIN_BUNNY_SPAWNTIME:Number = 6.0;
         
         public static const MIN_TROLL_SPAWNTIME:Number = 1.0;
+
+        public static const TROLL_WALL_DAMAGE:Number = 2.0;
 		
 		public static const TEXT_MAX_ALPHA:Number = 0.7;
 		public static const TEXT_READ_SPEED:Number = 0.20;
@@ -1063,7 +1065,7 @@ package
         
         public function trollWall(troll:FlxObject, wall:FlxObject):void{
             FlxObject.separate(troll, wall);
-            wall.hurt((troll as Troll).big ? 10 : 5);
+            wall.hurt((troll as Troll).big ? 2 * TROLL_WALL_DAMAGE : TROLL_WALL_DAMAGE);
         }
         
         public function trollShot(arrow:FlxObject, troll:Troll):void{
@@ -1097,10 +1099,8 @@ package
             trollRetreat(0);
             FlxG.mouse.show();
             showText("No crown, no king. Game over.");
-            showText("Click to continue.");
-            showText("Wait to enter highscore.");
-            showText("Click to continue.");
-            showText("Wait to enter highscore.");
+            showText("Click to continue or wait to enter highscore.");
+            showText("Click to continue or wait to enter highscore.");
             FlxG.fade(0, 20, endGame);
         }
 

@@ -11,7 +11,7 @@ package
 
 	public class king extends FlxGame
 	{	
-		public static const VERSION:String = 'v1.1.0'
+		public static const VERSION:String = 'v1.1.2';
 
 		public function king()
 		{			

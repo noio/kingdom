@@ -410,6 +410,7 @@ package
                     action = IDLE;
                 } else if (action == IDLE){
                     checkShootable(playstate.trolls);
+                    checkShootable(playstate.trollsNoCollide);
                     // Check for idle again since we could be shooting a Troll.
                     if (action == IDLE){
                         checkShootable(playstate.bunnies);

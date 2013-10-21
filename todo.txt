@@ -113,8 +113,11 @@ x misschien in de lucht of een fijner font (halve pixels ipv hele pixels zeg maa
 x als je bij de eerste nacht rechts staat met je koning wordt je aangevallen terwijl die lange pan naar links gedaan wordt
 
 highscore screen is ugly
-goal is not clear
+x goal is not clear
 show coin count more clearly
 x make trolls jump on each other's heads
 x night before day 8 too cray fx
 x higher jumps in cyclic phase
+walls should let trolls out when retreating
+nerf 'inner castle' strategy
+ramp difficulty at high phases
