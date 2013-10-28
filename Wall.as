@@ -107,7 +107,7 @@ package
         }
         
         public function needsWork():Boolean{
-            return (building || (health < HEALTH[stage] & t < HURT_COOLDOWN));
+            return ((building || health < HEALTH[stage]) && t < HURT_COOLDOWN);
         }
         
         public function canBuild():Boolean{

@@ -753,8 +753,8 @@ package
         
         public function phaseNightCycle():void{
             var difficulty:Number = day.value - 10;
-            trollStats(30, 4, 45, 4, false, 8.0); // Strong 
-            spawnTrolls(int(10 * difficulty));
+            trollStats(30, 3 + 2 * difficulty, 45, 4, false, 8.0); // Strong 
+            spawnTrolls(int(10 + difficulty));
             if (day.value % 2 == 0){
                 trollStats(20, 30, 10, 999999, true, 16.0); // Boss
                 spawnTrolls(int(2 * difficulty));
